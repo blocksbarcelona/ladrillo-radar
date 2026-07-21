@@ -36,7 +36,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Cloudflare Web Analytics */}
+        <script
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token":"ba97714010c641e8a21caf29e648a45f"}'
+        ></script>
+        {/* End Cloudflare Web Analytics */}
+      </body>
     </html>
   );
 }

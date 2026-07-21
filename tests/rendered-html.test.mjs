@@ -4,6 +4,16 @@ import test from "node:test";
 import { getScoreBand, isPastProject, projects } from "../data/projects.ts";
 
 const root = new URL("../dist/client/", import.meta.url);
+const cloudflareToken = "ba97714010c641e8a21caf29e648a45f";
+
+function assertCloudflareAnalytics(html) {
+  const beaconTags = [
+    ...html.matchAll(/<script[^>]*src="https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js"[^>]*>/g),
+  ];
+
+  assert.equal(beaconTags.length, 1);
+  assert.match(beaconTags[0][0], new RegExp(cloudflareToken));
+}
 
 test("exports the complete static radar", async () => {
   const html = await readFile(new URL("index.html", root), "utf8");
@@ -39,6 +49,7 @@ test("exports the complete static radar", async () => {
   assert.match(html, /\.\/assets\//);
   assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
+  assertCloudflareAnalytics(html);
 
   await Promise.all([
     access(new URL(".nojekyll", root)),
@@ -117,5 +128,6 @@ for (const id of [
     assert.doesNotMatch(html, /\/10/);
     assert.match(html, /\.\.\/\.\.\/assets\//);
     assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
+    assertCloudflareAnalytics(html);
   });
 }
