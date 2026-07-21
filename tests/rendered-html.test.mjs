@@ -21,6 +21,9 @@ test("exports the complete static radar", async () => {
   assert.match(html, /proyectos\/vivaldi-ii\//);
   assert.match(html, /proyectos\/residencial-altay\//);
   assert.match(html, /proyectos\/madrid-atlas-nuevo-ahijones\//);
+  const projectCardLinks = [...html.matchAll(/<a class="project-card-link" href="proyectos\/([^\"]+)\/"/g)];
+  assert.equal(projectCardLinks.length, 6);
+  assert.doesNotMatch(html, /<a class="detail-link"/);
   assert.match(html, /6,5, escala de 0 a 10/);
   assert.match(html, /7,1, escala de 0 a 10/);
   assert.match(html, /2,5, escala de 0 a 10/);

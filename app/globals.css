@@ -228,9 +228,13 @@ nav a:hover { border-bottom-color: var(--ink); }
   min-width: 0;
   border: 1px solid var(--ink);
   background: var(--white);
+}
+.project-card-link {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
+.project-card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 .project-card-topline {
   height: 52px;
   padding: 9px 20px;
@@ -321,8 +325,8 @@ nav a:hover { border-bottom-color: var(--ink); }
   font-weight: 850;
 }
 .detail-link span { font-size: 20px; transition: transform .15s ease; }
-.detail-link:hover { background: var(--acid); }
-.detail-link:hover span { transform: translateX(4px); }
+.project-card:hover .detail-link { background: var(--acid); }
+.project-card:hover .detail-link span { transform: translateX(4px); }
 .empty-state { max-width: 1500px; margin: 0 auto; padding: 40px; border: 1px dashed var(--muted); color: var(--muted); }
 
 .comparison-section { padding: 76px 4vw; background: var(--ink); color: var(--white); scroll-margin-top: 65px; }
@@ -745,7 +749,9 @@ nav { gap: 26px; font-size: 14px; font-weight: 600; }
   border-color: var(--line);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(16, 24, 40, .07);
+  transition: box-shadow .16s ease, transform .16s ease;
 }
+.project-card:hover { box-shadow: 0 8px 22px rgba(16, 24, 40, .13); transform: translateY(-2px); }
 .project-card-topline, .project-title-row, .project-date, .card-metrics, .card-verdict, .detail-link {
   border-color: var(--line);
 }
@@ -804,7 +810,7 @@ nav { gap: 26px; font-size: 14px; font-weight: 600; }
 }
 .card-alerts li { padding-left: 17px; font-size: 14px; line-height: 1.5; }
 .detail-link { min-height: 56px; font-size: 14px; font-weight: 700; color: #175cd3; }
-.detail-link:hover { background: #eff8ff; }
+.project-card:hover .detail-link { background: #eff8ff; }
 .empty-state { border-color: var(--line); border-radius: 10px; background: white; font-size: 15px; }
 
 .comparison-section { background: white; color: var(--ink); border-top: 1px solid var(--line); }

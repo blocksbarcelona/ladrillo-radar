@@ -57,6 +57,11 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article className="project-card" id={project.id}>
+      <a
+        className="project-card-link"
+        href={`proyectos/${project.id}/`}
+        aria-labelledby={`project-title-${project.id}`}
+      >
       <div className="project-card-topline">
         <PlatformLogo platform={project.platform} compact />
         <span className={`state-pill ${past ? "state-past" : "state-current"}`}>
@@ -66,7 +71,7 @@ function ProjectCard({ project }: { project: Project }) {
 
       <div className="project-title-row">
         <div>
-          <h3>{project.name}</h3>
+          <h3 id={`project-title-${project.id}`}>{project.name}</h3>
           <p>{project.location}</p>
         </div>
         <div
@@ -113,9 +118,10 @@ function ProjectCard({ project }: { project: Project }) {
         </ul>
       </div>
 
-      <a className="detail-link" href={`proyectos/${project.id}/`}>
+      <span className="detail-link">
         Ver auditoría completa
         <span aria-hidden="true">→</span>
+      </span>
       </a>
     </article>
   );
