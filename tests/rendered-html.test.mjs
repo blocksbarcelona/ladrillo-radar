@@ -59,6 +59,15 @@ for (const id of [
     assert.match(html, /Documentación localizada/);
     assert.match(html, /Preguntas que deben tener respuesta/);
     assert.match(html, /escala de 0 a 10/);
+    const documentLinks = [...html.matchAll(/<a class="document-row document-link" href="([^"]+)"/g)]
+      .map((match) => match[1].replaceAll("&amp;", "&"));
+    assert.ok(documentLinks.length > 0, "cada ficha debe enlazar sus documentos localizados");
+    for (const link of documentLinks) {
+      const url = new URL(link);
+      assert.equal(url.protocol, "https:");
+      assert.doesNotMatch(url.hostname, /^(?:localhost|127\.0\.0\.1)$/);
+    }
+    assert.doesNotMatch(html, /Archivado localmente|repositorio local|archivo local|servidor local|\/Volumes\//i);
     assert.doesNotMatch(html, /\/10/);
     assert.match(html, /\.\.\/\.\.\/assets\//);
     assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);

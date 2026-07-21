@@ -30,7 +30,7 @@ es la comparabilidad y la independencia percibida.
 
 ## Estructura
 
-- `data/projects.ts`: datos, análisis, carencias, documentos, fuentes y scoring.
+- `data/projects.ts`: datos, análisis, carencias, documentos, fuentes y scoring. Todo documento localizado debe incluir su URL web oficial; nunca una ruta del equipo donde se realizó el análisis.
 - `app/page.tsx`: portada, filtros, ordenación y separación temporal.
 - `app/proyectos/[id]/page.tsx`: plantilla de ficha estática detallada.
 - `app/components/PlatformLogo.tsx`: marcas oficiales locales.

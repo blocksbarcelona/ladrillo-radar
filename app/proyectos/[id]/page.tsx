@@ -218,13 +218,32 @@ export default async function ProjectDetail({
             <div><p>CONTROL DE EVIDENCIAS</p><h2>Documentación localizada</h2></div>
           </div>
           <div className="documents-list">
-            {project.documents.map((document) => (
-              <div className="document-row" key={document.name}>
-                <strong>{document.name}</strong>
-                <span className={`document-status status-${statusClass(document.status)}`}>{document.status}</span>
-                <p>{document.note}</p>
-              </div>
-            ))}
+            {project.documents.map((document) => {
+              const content = (
+                <>
+                  <div className="document-title">
+                    <strong>{document.name}</strong>
+                    {document.url && <span>Ver documento ↗</span>}
+                  </div>
+                  <span className={`document-status status-${statusClass(document.status)}`}>{document.status}</span>
+                  <p>{document.note}</p>
+                </>
+              );
+
+              return document.url ? (
+                <a
+                  className="document-row document-link"
+                  href={document.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={document.name}
+                >
+                  {content}
+                </a>
+              ) : (
+                <div className="document-row" key={document.name}>{content}</div>
+              );
+            })}
           </div>
         </div>
 
@@ -255,9 +274,9 @@ export default async function ProjectDetail({
           </div>
           <p className="analysis-note">
             Corte documental: {SNAPSHOT_LABEL.toLowerCase()}. La ficha parte de los informes,
-            datos normalizados y documentos archivados en el repositorio local. “No localizado” significa
-            que no aparece en el material revisado; no prueba que el documento no exista. Los archivos
-            protegidos se enumeran, pero no se redistribuyen en esta web estática.
+            datos normalizados y documentos originales consultados en las plataformas. Cada documento
+            disponible enlaza a su ubicación web oficial; algunos requieren iniciar sesión. “No localizado”
+            significa que no aparece en el material revisado y no prueba que el documento no exista.
           </p>
         </div>
       </section>

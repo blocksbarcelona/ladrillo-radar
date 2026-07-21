@@ -2,7 +2,7 @@ export type Platform = "Civislend" | "Urbanitae" | "wecity";
 export type Risk = "Medio" | "Medio-alto" | "Alto" | "Muy alto";
 export type Severity = "Crítica" | "Alta" | "Media";
 export type DocumentStatus =
-  | "Archivado localmente"
+  | "Disponible en la plataforma"
   | "Acceso restringido"
   | "No localizado";
 
@@ -78,11 +78,20 @@ export type Project = {
     calculation: string;
     reading: string;
   }>;
-  documents: Array<{
-    name: string;
-    status: DocumentStatus;
-    note: string;
-  }>;
+  documents: Array<
+    | {
+        name: string;
+        status: Exclude<DocumentStatus, "No localizado">;
+        note: string;
+        url: string;
+      }
+    | {
+        name: string;
+        status: "No localizado";
+        note: string;
+        url?: never;
+      }
+  >;
   questions: string[];
   sources: Array<{
     label: string;
@@ -237,16 +246,16 @@ export const projects: Project[] = [
       },
     ],
     documents: [
-      { name: "Licencia de obras", status: "Acceso restringido", note: "Enlace protegido identificado; falta acreditar vigencia actual." },
-      { name: "Nota simple / información registral", status: "Acceso restringido", note: "Enlace protegido identificado en el índice local." },
-      { name: "Tasación", status: "Acceso restringido", note: "Debe revisarse el desglose final de las unidades que permanecen hipotecadas." },
-      { name: "Planos", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Dossier del promotor", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Informe de riesgos", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Teaser", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Estudio de mercado", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Estudio económico", status: "Acceso restringido", note: "Enlace protegido identificado." },
+      { name: "Licencia de obras", status: "Acceso restringido", note: "Documento oficial en Civislend; falta acreditar su vigencia actual.", url: "https://www.civislend.com/document/254937" },
+      { name: "Nota simple / información registral", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/254946" },
+      { name: "Tasación", status: "Acceso restringido", note: "Debe revisarse el desglose final de las unidades que permanecen hipotecadas.", url: "https://www.civislend.com/document/254949" },
+      { name: "Planos", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/254952" },
+      { name: "Dossier del promotor", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/254955" },
+      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/255534" },
+      { name: "Informe de riesgos", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/255540" },
+      { name: "Teaser", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/255543" },
+      { name: "Estudio de mercado", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/255549" },
+      { name: "Estudio económico", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/255552" },
     ],
     questions: [
       "¿Puede un certificado municipal o dictamen jurídico confirmar que la licencia de abril de 2022 sigue vigente?",
@@ -261,7 +270,7 @@ export const projects: Project[] = [
         label: "Civislend · Toboso Madrid",
         url: "https://www.civislend.com/proyecto/963",
         type: "Primaria",
-        note: "Página del proyecto, cifras de la operación y documentación protegida inventariada en el archivo local.",
+        note: "Página del proyecto, cifras de la operación y acceso a la documentación oficial enlazada en esta ficha.",
       },
       {
         label: "BOE · Ley 9/2001 del Suelo de la Comunidad de Madrid",
@@ -298,7 +307,7 @@ export const projects: Project[] = [
     strengths: [
       "La tasación HET archivada de 4.715.784,87 € produce la mejor cobertura hipotecaria entre los proyectos de Civislend analizados.",
       "Se declara un 80% de obra ejecutada y una aportación del promotor de 1.548.130 €.",
-      "Los nueve documentos principales se han archivado localmente y permiten contrastar la ficha pública.",
+      "Los nueve documentos principales están disponibles mediante sus enlaces oficiales y permiten contrastar la ficha pública.",
     ],
     watch: [
       "La web mezcla dos HET separados por 540.000 € y publica un LTV incompatible con la cifra menor.",
@@ -428,15 +437,15 @@ export const projects: Project[] = [
       },
     ],
     documents: [
-      { name: "Tasación Eurovaloraciones · 11 jun 2026", status: "Archivado localmente", note: "Valor HET: 4.715.784,87 €. No se publica en la exportación estática." },
-      { name: "Información registral", status: "Archivado localmente", note: "Incluye la hipoteca previa y su vencimiento registral." },
-      { name: "Licencia", status: "Archivado localmente", note: "Debe contrastarse con el proyecto actualizado y el reinicio de obra." },
-      { name: "Ficha de datos fundamentales", status: "Archivado localmente", note: "Contiene las condiciones vinculantes del préstamo." },
-      { name: "Informe de riesgos", status: "Archivado localmente", note: "Revisado en la auditoría local." },
-      { name: "Estudio de mercado", status: "Archivado localmente", note: "Revisado en la auditoría local." },
-      { name: "Estudio económico", status: "Archivado localmente", note: "Contiene la hipótesis divergente de 15 meses." },
-      { name: "Teaser", status: "Archivado localmente", note: "Muestra la HET de 4.715.784,87 €." },
-      { name: "Trayectoria del promotor", status: "Archivado localmente", note: "Material promocional revisado; no sustituye cuentas ni verificaciones independientes." },
+      { name: "Tasación Eurovaloraciones · 11 jun 2026", status: "Acceso restringido", note: "Valor HET: 4.715.784,87 €.", url: "https://www.civislend.com/document/255306" },
+      { name: "Información registral", status: "Acceso restringido", note: "Incluye la hipoteca previa y su vencimiento registral.", url: "https://www.civislend.com/document/255309" },
+      { name: "Licencia", status: "Acceso restringido", note: "Debe contrastarse con el proyecto actualizado y el reinicio de obra.", url: "https://www.civislend.com/document/255285" },
+      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Contiene las condiciones vinculantes del préstamo.", url: "https://www.civislend.com/document/255531" },
+      { name: "Informe de riesgos", status: "Acceso restringido", note: "Informe oficial publicado por Civislend.", url: "https://www.civislend.com/document/255300" },
+      { name: "Estudio de mercado", status: "Acceso restringido", note: "Comparables y precios de comercialización del proyecto.", url: "https://www.civislend.com/document/255279" },
+      { name: "Estudio económico", status: "Acceso restringido", note: "Contiene la hipótesis divergente de 15 meses.", url: "https://www.civislend.com/document/255282" },
+      { name: "Teaser", status: "Acceso restringido", note: "Muestra la HET de 4.715.784,87 €.", url: "https://www.civislend.com/document/255303" },
+      { name: "Trayectoria del promotor", status: "Acceso restringido", note: "Material promocional; no sustituye cuentas ni verificaciones independientes.", url: "https://www.civislend.com/document/255288" },
     ],
     questions: [
       "¿Puede Civislend confirmar por escrito que el plazo vinculante es 12 meses, el retorno 11% y la prórroga máxima 6 meses al mismo TIN?",
@@ -451,7 +460,7 @@ export const projects: Project[] = [
         label: "Civislend · Residencial Mas Martí",
         url: "https://www.civislend.com/proyecto/966",
         type: "Primaria",
-        note: "Página del proyecto contrastada con nueve documentos archivados localmente el 20 de julio de 2026.",
+        note: "Página del proyecto contrastada con nueve documentos originales, enlazados en esta ficha.",
       },
     ],
   },
@@ -611,14 +620,14 @@ export const projects: Project[] = [
       },
     ],
     documents: [
-      { name: "Información registral", status: "Acceso restringido", note: "Enlace protegido identificado en el índice local." },
-      { name: "Licencia de obras", status: "Acceso restringido", note: "No acredita por sí sola la habilitación de la actividad turística." },
-      { name: "Estudio de mercado", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Estudio económico", status: "Acceso restringido", note: "Debe contrastarse con la tasación y el escenario bancario de salida." },
-      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Informe de riesgos", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Proyecto básico", status: "Acceso restringido", note: "Enlace protegido identificado." },
-      { name: "Teaser", status: "Acceso restringido", note: "Enlace protegido identificado." },
+      { name: "Información registral", status: "Acceso restringido", note: "Documento oficial disponible para usuarios identificados en Civislend.", url: "https://www.civislend.com/document/255225" },
+      { name: "Licencia de obras", status: "Acceso restringido", note: "No acredita por sí sola la habilitación de la actividad turística.", url: "https://www.civislend.com/document/255228" },
+      { name: "Estudio de mercado", status: "Acceso restringido", note: "Documento oficial publicado por Civislend.", url: "https://www.civislend.com/document/255231" },
+      { name: "Estudio económico", status: "Acceso restringido", note: "Debe contrastarse con la tasación y el escenario bancario de salida.", url: "https://www.civislend.com/document/255234" },
+      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Documento oficial publicado por Civislend.", url: "https://www.civislend.com/document/255237" },
+      { name: "Informe de riesgos", status: "Acceso restringido", note: "Documento oficial publicado por Civislend.", url: "https://www.civislend.com/document/255240" },
+      { name: "Proyecto básico", status: "Acceso restringido", note: "Documento oficial publicado por Civislend.", url: "https://www.civislend.com/document/255243" },
+      { name: "Teaser", status: "Acceso restringido", note: "Documento oficial publicado por Civislend.", url: "https://www.civislend.com/document/255246" },
       { name: "Tasación completa", status: "No localizado", note: "No aparece en la relación pública de documentos pese a publicarse tres valores." },
       { name: "Compatibilidad y títulos turísticos", status: "No localizado", note: "No se han localizado certificados municipales ni habilitaciones de actividad." },
     ],
@@ -635,7 +644,7 @@ export const projects: Project[] = [
         label: "Civislend · Urban Suites Alicante",
         url: "https://www.civislend.com/proyecto/978",
         type: "Primaria",
-        note: "Página del proyecto y documentación protegida inventariada en el archivo local.",
+        note: "Página del proyecto y documentación oficial protegida enlazada en esta ficha.",
       },
       {
         label: "Ayuntamiento de Alicante · suspensión de títulos para alojamientos turísticos",
@@ -672,7 +681,7 @@ export const projects: Project[] = [
       iso: "2026-07-21",
       label: "21 jul 2026 · 12:00 CEST",
       type: "Apertura",
-      note: "Fecha de apertura archivada con la documentación local. Coincide con el corte del radar.",
+      note: "Fecha de apertura indicada en la documentación revisada. Coincide con el corte del radar.",
     },
     status: "Apertura en el corte",
     score: 7.1,
@@ -786,10 +795,10 @@ export const projects: Project[] = [
       },
     ],
     documents: [
-      { name: "Ficha de datos fundamentales", status: "Archivado localmente", note: "Condiciones, riesgos, garantías y estructura del préstamo." },
-      { name: "Tasación TASA", status: "Archivado localmente", note: "Emitida el 1 de junio de 2026; caduca el 1 de diciembre de 2026." },
-      { name: "Nota simple", status: "Archivado localmente", note: "Finca registral 32.831; requiere actualización con la obra nueva y la hipoteca." },
-      { name: "Resumen económico", status: "Archivado localmente", note: "Fuentes, usos, venta objetivo y costes financieros." },
+      { name: "Ficha de datos fundamentales", status: "Disponible en la plataforma", note: "Condiciones, riesgos, garantías y estructura del préstamo.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Ficha_de_datos_de_inversin.pdf" },
+      { name: "Tasación TASA", status: "Disponible en la plataforma", note: "Emitida el 1 de junio de 2026; caduca el 1 de diciembre de 2026.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/Tasacin.pdf" },
+      { name: "Nota simple", status: "Disponible en la plataforma", note: "Finca registral 32.831; requiere actualización con la obra nueva y la hipoteca.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/Nota_simple.pdf" },
+      { name: "Resumen económico", status: "Disponible en la plataforma", note: "Fuentes, usos, venta objetivo y costes financieros.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Resumen_econmico.pdf" },
       { name: "Contrato de obra firmado", status: "No localizado", note: "La tasación sólo identifica un presupuesto no firmado." },
       { name: "Seguro decenal", status: "No localizado", note: "Advertencia expresa de la tasación." },
     ],
@@ -806,7 +815,7 @@ export const projects: Project[] = [
         label: "Urbanitae · Vivaldi II",
         url: "https://blog.urbanitae.com/2026/07/17/vivaldi-ii-deuda-al-1025-anual-para-una-villa-ultra-prime-en-sierra-blanca/",
         type: "Primaria",
-        note: "Presentación pública de la oportunidad; contrastada con FDD, tasación y resumen económico archivados.",
+        note: "Presentación pública de la oportunidad; contrastada con la FDD, la tasación y el resumen económico enlazados.",
       },
       {
         label: "CNMV · registro de Urbanitae",
@@ -940,11 +949,11 @@ export const projects: Project[] = [
       },
     ],
     documents: [
-      { name: "Ficha de datos fundamentales", status: "Archivado localmente", note: "Estructura de equity, riesgos, derechos y plazo de captación." },
-      { name: "Resumen económico", status: "Archivado localmente", note: "Fuentes, usos, escenarios y waterfall." },
-      { name: "Detalle de ventas", status: "Archivado localmente", note: "Precios y reservas por vivienda." },
-      { name: "Estudio de mercado", status: "Archivado localmente", note: "Comparables comerciales; no sustituye una tasación formal." },
-      { name: "Nota simple", status: "Archivado localmente", note: "Emitida el 28 de marzo de 2025; necesita actualización." },
+      { name: "Ficha de datos fundamentales", status: "Disponible en la plataforma", note: "Estructura de equity, riesgos, derechos y plazo de captación.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Ficha_Datos_Fundamentales_para_la_Inversin.pdf" },
+      { name: "Resumen económico", status: "Disponible en la plataforma", note: "Fuentes, usos, escenarios y waterfall.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Resumen_econmico.pdf" },
+      { name: "Detalle de ventas", status: "Disponible en la plataforma", note: "Precios y reservas por vivienda.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Detalle_de_Ventas.pdf" },
+      { name: "Estudio de mercado", status: "Disponible en la plataforma", note: "Comparables comerciales; no sustituye una tasación formal.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/Estudio_de_Mercado.pdf" },
+      { name: "Nota simple", status: "Disponible en la plataforma", note: "Emitida el 28 de marzo de 2025; necesita actualización.", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/Nota_Simple_Registral.pdf" },
       { name: "Tasación independiente", status: "No localizado", note: "Ausencia que limita la nota provisional a un máximo de 5." },
       { name: "Licencia de obras", status: "No localizado", note: "No puede validarse el inicio sin este documento." },
       { name: "Financiación bancaria vinculante", status: "No localizado", note: "El plan prevé 5,144 M€ de préstamo promotor." },
@@ -963,7 +972,7 @@ export const projects: Project[] = [
         label: "Urbanitae",
         url: "https://urbanitae.com/es/",
         type: "Primaria",
-        note: "Plataforma de origen; el análisis usa la FDD y cuatro documentos del proyecto archivados localmente.",
+        note: "Plataforma de origen; el análisis usa la FDD y cuatro documentos originales enlazados en esta ficha.",
       },
       {
         label: "CNMV · registro de Urbanitae",
@@ -1116,13 +1125,15 @@ export const projects: Project[] = [
       },
     ],
     documents: [
-      { name: "Dossier de inversión", status: "Archivado localmente", note: "Descripción, estructura y cifras publicadas." },
-      { name: "Ficha de datos fundamentales", status: "Archivado localmente", note: "Riesgos, condiciones y datos del promotor." },
-      { name: "Contrato de préstamo", status: "Archivado localmente", note: "Fechado el 20 de julio de 2026." },
-      { name: "Tasación Gesvalt", status: "Archivado localmente", note: "Certificado firmado de 1.604.925,51 €; vence el 24 de agosto de 2026." },
-      { name: "Nota simple", status: "Archivado localmente", note: "Contiene afección urbanística provisional y afecciones fiscales." },
-      { name: "Informe de rating", status: "Archivado localmente", note: "No es válido para el prestatario porque analiza otra sociedad." },
-      { name: "Mandatos y garantía", status: "Archivado localmente", note: "La facultad irrevocable de venta nace tras el incumplimiento." },
+      { name: "Dossier de inversión", status: "Acceso restringido", note: "Descripción, estructura y cifras publicadas; el enlace oficial requiere autenticación.", url: "https://api.wecity.com/opportunities/290/doc?file=101" },
+      { name: "Información catastral", status: "Acceso restringido", note: "Información descriptiva y gráfica del activo; el enlace oficial requiere autenticación.", url: "https://api.wecity.com/opportunities/290/doc?file=104" },
+      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Riesgos, condiciones y datos del promotor; el enlace oficial requiere autenticación.", url: "https://api.wecity.com/opportunities/290/doc?file=139" },
+      { name: "Contrato de préstamo", status: "Acceso restringido", note: "Fechado el 20 de julio de 2026; el enlace oficial requiere autenticación.", url: "https://api.wecity.com/opportunities/290/doc?file=204" },
+      { name: "Tasación Gesvalt", status: "Acceso restringido", note: "Certificado firmado de 1.604.925,51 €; vence el 24 de agosto de 2026.", url: "https://api.wecity.com/opportunities/290/doc?file=110" },
+      { name: "Nota simple", status: "Acceso restringido", note: "Contiene afección urbanística provisional y afecciones fiscales.", url: "https://api.wecity.com/opportunities/290/doc?file=107" },
+      { name: "Informe de rating", status: "Acceso restringido", note: "No es válido para el prestatario porque analiza otra sociedad.", url: "https://api.wecity.com/opportunities/290/doc?file=133" },
+      { name: "Mandato del agente de garantías", status: "Acceso restringido", note: "Regula la actuación de Global Security Services; el enlace oficial requiere autenticación.", url: "https://api.wecity.com/opportunities/290/doc?file=205" },
+      { name: "Mandato a WeCity", status: "Acceso restringido", note: "Regula la representación encomendada a la plataforma; el enlace oficial requiere autenticación.", url: "https://api.wecity.com/opportunities/290/doc?file=206" },
       { name: "Licencia de edificación", status: "No localizado", note: "La documentación indica que está pendiente." },
       { name: "Term sheet bancario", status: "No localizado", note: "Necesario para validar la salida prevista." },
     ],
@@ -1142,7 +1153,7 @@ export const projects: Project[] = [
         label: "wecity · Madrid Atlas Nuevo Ahijones",
         url: "https://www.wecity.com/oportunidades/madrid-atlas-nuevo-ahijones/",
         type: "Primaria",
-        note: "Página de la oportunidad contrastada con nueve documentos archivados localmente.",
+        note: "Página de la oportunidad contrastada con nueve documentos originales enlazados en esta ficha.",
       },
       {
         label: "Madrid Crece · Los Ahijones",
