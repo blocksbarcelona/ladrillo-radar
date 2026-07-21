@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { PlatformLogo } from "./components/PlatformLogo";
 import {
   formatScore,
+  getScoreBand,
   isPastProject,
   projects,
   SNAPSHOT_DATE,
@@ -68,7 +69,11 @@ function ProjectCard({ project }: { project: Project }) {
           <h3>{project.name}</h3>
           <p>{project.location}</p>
         </div>
-        <div className="score-chip" aria-label={`${formatScore(project.score)}, escala de 0 a 10`}>
+        <div
+          className={`score-chip score-band-${getScoreBand(project.score)}`}
+          data-score-band={getScoreBand(project.score)}
+          aria-label={`${formatScore(project.score)}, escala de 0 a 10`}
+        >
           <strong>{formatScore(project.score)}</strong>
         </div>
       </div>

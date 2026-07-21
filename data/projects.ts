@@ -1185,6 +1185,16 @@ export function getProject(id: string) {
   return projects.find((project) => project.id === id);
 }
 
+export type ScoreBand = "green-strong" | "green-soft" | "yellow" | "orange" | "red";
+
+export function getScoreBand(score: number): ScoreBand {
+  if (score >= 9) return "green-strong";
+  if (score >= 7) return "green-soft";
+  if (score >= 6) return "yellow";
+  if (score >= 5) return "orange";
+  return "red";
+}
+
 export function formatScore(score: number) {
   return score.toLocaleString("es-ES", {
     minimumFractionDigits: 1,

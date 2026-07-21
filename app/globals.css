@@ -857,6 +857,11 @@ footer > a { font-size: 14px; color: var(--blue); }
 .detail-score > span { font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .03em; }
 .detail-score strong { color: #1849a9; font-size: 66px; letter-spacing: -.04em; }
 .detail-score p { border-color: #b2ccff; font-size: 14px; }
+.score-band-green-strong strong { color: #067647; }
+.score-band-green-soft strong { color: #4f7f32; }
+.score-band-yellow strong { color: #946200; }
+.score-band-orange strong { color: #c2410c; }
+.score-band-red strong { color: #b42318; }
 .detail-date-banner { background: #eff8ff; color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .detail-date-banner span { color: var(--muted); font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .03em; }
 .detail-date-banner strong { font-size: 15px; }

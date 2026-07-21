@@ -4,6 +4,7 @@ import { PlatformLogo } from "../../components/PlatformLogo";
 import {
   formatScore,
   getProject,
+  getScoreBand,
   isPastProject,
   platformMeta,
   projects,
@@ -85,7 +86,11 @@ export default async function ProjectDetail({
             <p className="detail-location">{project.location}</p>
             <p className="detail-verdict">{project.verdict}</p>
           </div>
-          <aside className="detail-score" aria-label={`Puntuación ${formatScore(project.score)}, escala de 0 a 10`}>
+          <aside
+            className={`detail-score score-band-${getScoreBand(project.score)}`}
+            data-score-band={getScoreBand(project.score)}
+            aria-label={`Puntuación ${formatScore(project.score)}, escala de 0 a 10`}
+          >
             <span>PUNTUACIÓN DEL CORTE</span>
             <div><strong>{formatScore(project.score)}</strong></div>
             <p>Riesgo observable · {project.risk}</p>

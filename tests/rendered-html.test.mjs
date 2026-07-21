@@ -24,6 +24,10 @@ test("exports the complete static radar", async () => {
   assert.match(html, /6,5, escala de 0 a 10/);
   assert.match(html, /7,1, escala de 0 a 10/);
   assert.match(html, /2,5, escala de 0 a 10/);
+  assert.match(html, /score-chip score-band-yellow" data-score-band="yellow" aria-label="6,5/);
+  assert.match(html, /score-chip score-band-orange" data-score-band="orange" aria-label="5,5/);
+  assert.match(html, /score-chip score-band-green-soft" data-score-band="green-soft" aria-label="7,1/);
+  assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="4,0/);
   assert.doesNotMatch(html, /COMPARATIVA DIRECTA|href="\#comparativa"/);
   assert.doesNotMatch(html, /\/10/);
   assert.match(html, /logos\/urbanitae\.svg/);
@@ -64,6 +68,7 @@ for (const id of [
     assert.doesNotMatch(html, /CONTROL DE EVIDENCIAS|Documentación localizada/);
     assert.match(html, /Preguntas que deben tener respuesta/);
     assert.match(html, /escala de 0 a 10/);
+    assert.match(html, /class="detail-score score-band-(?:green-strong|green-soft|yellow|orange|red)" data-score-band=/);
     const documentLinks = [...html.matchAll(/<a class="document-row document-link" href="([^"]+)"/g)]
       .map((match) => match[1].replaceAll("&amp;", "&"));
     assert.ok(documentLinks.length > 0, "cada ficha debe enlazar sus documentos localizados");
