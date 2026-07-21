@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
+import { getScoreBand } from "../data/projects.ts";
 
 const root = new URL("../dist/client/", import.meta.url);
 
@@ -49,16 +50,23 @@ test("exports the complete static radar", async () => {
   ]);
 });
 
-test("uses a vivid, clearly differentiated score palette", async () => {
+test("colors only the score number with the five exact bands", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.match(css, /--score-bg: #009f5d/);
-  assert.match(css, /--score-bg: #8bd448/);
-  assert.match(css, /--score-bg: #ffd60a/);
-  assert.match(css, /--score-bg: #ff8a00/);
-  assert.match(css, /--score-bg: #ef3340/);
+  assert.match(css, /--score-number: #008a50/);
+  assert.match(css, /--score-number: #5d9e2f/);
+  assert.match(css, /--score-number: #b27b00/);
+  assert.match(css, /--score-number: #e85d04/);
+  assert.match(css, /--score-number: #d92d3a/);
+  assert.doesNotMatch(css, /--score-bg|background: var\(--score/);
+  assert.match(css, /\.score-chip strong \{ color: var\(--score-number\);/);
+  assert.match(css, /\.detail-score strong \{ color: var\(--score-number\);/);
   assert.match(css, /\.score-chip strong \{[^}]*font-size: 32px/);
   assert.match(css, /\.detail-score strong \{[^}]*font-size: 78px/);
+  assert.deepEqual(
+    [9, 8.99, 7, 6.99, 6, 5.99, 5, 4.99].map(getScoreBand),
+    ["green-strong", "green-soft", "green-soft", "yellow", "yellow", "orange", "orange", "red"],
+  );
 });
 
 for (const id of [
