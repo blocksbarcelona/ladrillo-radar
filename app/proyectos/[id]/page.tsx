@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformLogo } from "../../components/PlatformLogo";
+import { ProjectDocuments } from "../../components/ProjectDocuments";
 import {
   formatScore,
   getProject,
@@ -9,7 +10,6 @@ import {
   platformMeta,
   projects,
   SNAPSHOT_LABEL,
-  type DocumentStatus,
 } from "../../../data/projects";
 
 export const dynamicParams = false;
@@ -32,14 +32,6 @@ export async function generateMetadata({
     title: `${project.name} — Auditoría · Ladrillo Radar`,
     description: `Análisis documental, inconsistencias, riesgos y promotor de ${project.name} en ${project.platform}.`,
   };
-}
-
-function statusClass(status: DocumentStatus) {
-  return status
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replaceAll(" ", "-")
-    .toLowerCase();
 }
 
 export default async function ProjectDetail({
@@ -222,34 +214,12 @@ export default async function ProjectDetail({
             <span>06</span>
             <div><h2>Documentación</h2></div>
           </div>
-          <div className="documents-list">
-            {project.documents.map((document) => {
-              const content = (
-                <>
-                  <div className="document-title">
-                    <strong>{document.name}</strong>
-                    {document.url && <span>Ver documento ↗</span>}
-                  </div>
-                  <span className={`document-status status-${statusClass(document.status)}`}>{document.status}</span>
-                  <p>{document.note}</p>
-                </>
-              );
-
-              return document.url ? (
-                <a
-                  className="document-row document-link"
-                  href={document.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={document.name}
-                >
-                  {content}
-                </a>
-              ) : (
-                <div className="document-row" key={document.name}>{content}</div>
-              );
-            })}
-          </div>
+          <ProjectDocuments
+            documents={project.documents}
+            eventDateTime={project.date.isoDateTime}
+            eventLabel={project.date.label}
+            initialPassed={past}
+          />
         </div>
 
         <div className="detail-section questions-section" id="preguntas">
@@ -280,7 +250,8 @@ export default async function ProjectDetail({
           <p className="analysis-note">
             Corte documental: {SNAPSHOT_LABEL.toLowerCase()}. La ficha parte de los informes,
             datos normalizados y documentos originales consultados en las plataformas. Cada documento
-            disponible enlaza a su ubicación web oficial; algunos requieren iniciar sesión. “No localizado”
+            disponible enlaza a su ubicación web oficial; algunos requieren iniciar sesión. Tras la fecha
+            y hora de apertura, el radar avisa automáticamente de que el acceso queda reservado a inversores. “No localizado”
             significa que no aparece en el material revisado y no prueba que el documento no exista.
           </p>
         </div>

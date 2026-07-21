@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
-import { getScoreBand } from "../data/projects.ts";
+import { getScoreBand, isPastProject, projects } from "../data/projects.ts";
 
 const root = new URL("../dist/client/", import.meta.url);
 
@@ -69,6 +69,17 @@ test("colors only the score number with the five exact bands", async () => {
   );
 });
 
+test("uses an exact date and time to move projects to the past", () => {
+  for (const project of projects) {
+    assert.match(project.date.isoDateTime, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+02:00$/);
+    assert.match(project.date.label, /\d{2}:\d{2} CEST$/);
+
+    const deadline = Date.parse(project.date.isoDateTime);
+    assert.equal(isPastProject(project, deadline - 1), false);
+    assert.equal(isPastProject(project, deadline), true);
+  }
+});
+
 for (const id of [
   "residencial-mas-marti",
   "urban-suites-alicante",
@@ -89,6 +100,8 @@ for (const id of [
     assert.ok(companyHeadingIndex < analysisLimitIndex && analysisLimitIndex < companyLeadIndex);
     assert.match(html, /<h2>Documentación<\/h2>/);
     assert.doesNotMatch(html, /CONTROL DE EVIDENCIAS|Documentación localizada/);
+    assert.match(html, /data-document-access="(?:public|investors)"/);
+    assert.match(html, /Documentación reservada a inversores|Ver documento|Acceso para inversores/);
     assert.match(html, /Preguntas que deben tener respuesta/);
     assert.match(html, /escala de 0 a 10/);
     assert.match(html, /class="detail-score score-band-(?:green-strong|green-soft|yellow|orange|red)" data-score-band=/);

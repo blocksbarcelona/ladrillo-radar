@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PlatformLogo } from "./components/PlatformLogo";
 import {
   formatScore,
@@ -39,7 +39,7 @@ const snapshotTime = new Date(`${SNAPSHOT_DATE}T12:00:00+02:00`).getTime();
 
 function distanceFromSnapshot(project: Project) {
   return Math.abs(
-    new Date(`${project.date.iso}T12:00:00+02:00`).getTime() - snapshotTime,
+    new Date(project.date.isoDateTime).getTime() - snapshotTime,
   ) / day;
 }
 
@@ -52,8 +52,8 @@ function sortProjects(items: Project[], mode: SortMode) {
   });
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const past = isPastProject(project);
+function ProjectCard({ project, currentTime }: { project: Project; currentTime: number }) {
+  const past = isPastProject(project, currentTime);
 
   return (
     <article className="project-card" id={project.id}>
@@ -131,6 +131,12 @@ export default function Home() {
   const [platform, setPlatform] = useState<"Todas" | Platform>("Todas");
   const [risk, setRisk] = useState<"Todos" | Risk>("Todos");
   const [sortMode, setSortMode] = useState<SortMode>("nearest");
+  const [currentTime, setCurrentTime] = useState(() => Date.now());
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setCurrentTime(Date.now()), 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const visibleProjects = useMemo(() => {
     const filtered = projects.filter(
@@ -142,8 +148,8 @@ export default function Home() {
     return sortProjects(filtered, sortMode);
   }, [platform, risk, sortMode]);
 
-  const currentProjects = visibleProjects.filter((project) => !isPastProject(project));
-  const pastProjects = visibleProjects.filter(isPastProject);
+  const currentProjects = visibleProjects.filter((project) => !isPastProject(project, currentTime));
+  const pastProjects = visibleProjects.filter((project) => isPastProject(project, currentTime));
 
   return (
     <main id="inicio">
@@ -171,8 +177,8 @@ export default function Home() {
         </div>
         <div className="overview-stats" aria-label="Resumen del corte">
           <div><strong>{projects.length}</strong><span>analizados</span></div>
-          <div><strong>{projects.filter((project) => !isPastProject(project)).length}</strong><span>actuales</span></div>
-          <div><strong>{projects.filter(isPastProject).length}</strong><span>pasados</span></div>
+          <div><strong>{projects.filter((project) => !isPastProject(project, currentTime)).length}</strong><span>actuales</span></div>
+          <div><strong>{projects.filter((project) => isPastProject(project, currentTime)).length}</strong><span>pasados</span></div>
         </div>
       </section>
 
@@ -228,7 +234,7 @@ export default function Home() {
         </div>
         {currentProjects.length ? (
           <div className="project-grid">
-            {currentProjects.map((project) => <ProjectCard project={project} key={project.id} />)}
+            {currentProjects.map((project) => <ProjectCard project={project} currentTime={currentTime} key={project.id} />)}
           </div>
         ) : (
           <p className="empty-state">No hay proyectos actuales con estos filtros.</p>
@@ -241,11 +247,11 @@ export default function Home() {
             <span className="section-index">02</span>
             <h2 id="past-title">Proyectos pasados</h2>
           </div>
-          <p>La fecha publicada es anterior al corte del {SNAPSHOT_LABEL.toLowerCase()}.</p>
+          <p>La clasificación usa la fecha y hora publicadas y se actualiza automáticamente.</p>
         </div>
         {pastProjects.length ? (
           <div className="project-grid">
-            {pastProjects.map((project) => <ProjectCard project={project} key={project.id} />)}
+            {pastProjects.map((project) => <ProjectCard project={project} currentTime={currentTime} key={project.id} />)}
           </div>
         ) : (
           <p className="empty-state">No hay proyectos pasados con estos filtros.</p>

@@ -36,7 +36,7 @@ export type Project = {
   name: string;
   location: string;
   date: {
-    iso: string;
+    isoDateTime: string;
     label: string;
     type: string;
     note: string;
@@ -108,7 +108,7 @@ export const projects: Project[] = [
     name: "Toboso Madrid",
     location: "Carabanchel · Madrid",
     date: {
-      iso: "2026-07-23",
+      isoDateTime: "2026-07-23T12:00:00+02:00",
       label: "23 jul 2026 · 12:00 CEST",
       type: "Apertura",
       note: "Apertura publicada por Civislend. En el corte del análisis todavía no había pasado.",
@@ -286,10 +286,10 @@ export const projects: Project[] = [
     name: "Residencial Mas Martí",
     location: "Tordera · Barcelona",
     date: {
-      iso: "2026-07-21",
+      isoDateTime: "2026-07-21T12:00:00+02:00",
       label: "21 jul 2026 · 12:00 CEST",
       type: "Apertura",
-      note: "Apertura publicada por Civislend. Coincide con la fecha de corte y se mantiene entre los proyectos actuales.",
+      note: "Apertura publicada por Civislend. El radar cambia automáticamente su estado al alcanzarse la hora indicada.",
     },
     status: "Apertura en el corte",
     score: 5.5,
@@ -470,7 +470,7 @@ export const projects: Project[] = [
     name: "Urban Suites Alicante",
     location: "Distrito Mercado · Alicante",
     date: {
-      iso: "2026-07-22",
+      isoDateTime: "2026-07-22T12:00:00+02:00",
       label: "22 jul 2026 · 12:00 CEST",
       type: "Apertura",
       note: "Apertura publicada por Civislend. En la fecha de corte todavía no había pasado.",
@@ -678,10 +678,10 @@ export const projects: Project[] = [
     name: "Vivaldi II",
     location: "Sierra Blanca · Marbella",
     date: {
-      iso: "2026-07-21",
+      isoDateTime: "2026-07-21T12:00:00+02:00",
       label: "21 jul 2026 · 12:00 CEST",
       type: "Apertura",
-      note: "Fecha de apertura indicada en la documentación revisada. Coincide con el corte del radar.",
+      note: "Fecha y hora de apertura indicadas en la documentación revisada. El estado cambia automáticamente al alcanzarse ese momento.",
     },
     status: "Apertura en el corte",
     score: 7.1,
@@ -831,10 +831,10 @@ export const projects: Project[] = [
     name: "Residencial Altay",
     location: "Armilla · Granada",
     date: {
-      iso: "2026-08-24",
-      label: "24 ago 2026",
-      type: "Fin de captación",
-      note: "La FDD archiva esta fecha límite. No se ha localizado en la carpeta la hora exacta de apertura.",
+      isoDateTime: "2026-07-21T16:00:00+02:00",
+      label: "21 jul 2026 · 16:00 CEST",
+      type: "Apertura",
+      note: "Fecha y hora de apertura publicadas por Urbanitae. La FDD mantiene el 24 de agosto como fecha límite de captación.",
     },
     status: "En captación",
     score: 4.7,
@@ -988,10 +988,10 @@ export const projects: Project[] = [
     name: "Madrid Atlas Nuevo Ahijones",
     location: "Los Ahijones · Madrid",
     date: {
-      iso: "2026-07-21",
-      label: "21 jul 2026",
-      type: "Analizado",
-      note: "La documentación contractual está fechada el 20 de julio; la hora exacta de apertura no aparece archivada.",
+      isoDateTime: "2026-07-21T12:00:00+02:00",
+      label: "21 jul 2026 · 12:00 CEST",
+      type: "Apertura",
+      note: "Fecha y hora publicadas en la página oficial de la oportunidad de wecity.",
     },
     status: "Oportunidad publicada",
     score: 2.5,
@@ -1177,8 +1177,9 @@ export const projects: Project[] = [
   },
 ];
 
-export function isPastProject(project: Project) {
-  return project.date.iso < SNAPSHOT_DATE;
+export function isPastProject(project: Project, at: Date | number = Date.now()) {
+  const referenceTime = typeof at === "number" ? at : at.getTime();
+  return Date.parse(project.date.isoDateTime) <= referenceTime;
 }
 
 export function getProject(id: string) {
