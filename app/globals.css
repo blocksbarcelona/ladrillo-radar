@@ -861,6 +861,21 @@ tbody td:first-child {
 footer { background: #eaecf0; color: var(--ink); border-top: 1px solid var(--line); }
 footer p { color: var(--muted); font-size: 14px; line-height: 1.55; }
 footer > a { font-size: 14px; color: var(--blue); }
+.footer-credit {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin-top: 2px;
+  padding-top: 20px;
+  border-top: 1px solid #cfd4dc;
+  text-align: center;
+}
+.footer-credit a {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .detail-breadcrumb { font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 600; }
 .detail-title h1 { font-size: clamp(48px, 6vw, 78px); line-height: 1; letter-spacing: -.045em; }

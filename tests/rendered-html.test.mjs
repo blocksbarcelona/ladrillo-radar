@@ -15,6 +15,11 @@ function assertCloudflareAnalytics(html) {
   assert.match(beaconTags[0][0], new RegExp(cloudflareToken));
 }
 
+function assertUberleapCredit(html) {
+  assert.match(html, new RegExp(`© ${new Date().getFullYear()} · Desarrollo por`));
+  assert.match(html, /href="https:\/\/uberleap\.com\/"[^>]*>Uberleap<\/a>/);
+}
+
 test("exports the complete static radar", async () => {
   const html = await readFile(new URL("index.html", root), "utf8");
 
@@ -50,6 +55,7 @@ test("exports the complete static radar", async () => {
   assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
   assertCloudflareAnalytics(html);
+  assertUberleapCredit(html);
 
   await Promise.all([
     access(new URL(".nojekyll", root)),
@@ -129,5 +135,6 @@ for (const id of [
     assert.match(html, /\.\.\/\.\.\/assets\//);
     assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
     assertCloudflareAnalytics(html);
+    assertUberleapCredit(html);
   });
 }

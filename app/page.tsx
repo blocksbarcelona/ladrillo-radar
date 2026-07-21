@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { PlatformLogo } from "./components/PlatformLogo";
+import { UberleapCredit } from "./components/UberleapCredit";
 import {
   formatScore,
   getScoreBand,
@@ -338,6 +339,7 @@ export default function Home() {
           financiero: existe riesgo de pérdida de capital e iliquidez.
         </p>
         <a href="#inicio">Volver arriba ↑</a>
+        <UberleapCredit />
       </footer>
     </main>
   );

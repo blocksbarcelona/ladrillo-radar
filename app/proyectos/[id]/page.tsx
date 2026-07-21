@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformLogo } from "../../components/PlatformLogo";
 import { ProjectDocuments } from "../../components/ProjectDocuments";
+import { UberleapCredit } from "../../components/UberleapCredit";
 import {
   formatScore,
   getProject,
@@ -261,6 +262,7 @@ export default async function ProjectDetail({
         <div><span className="brand-mark" aria-hidden="true">LR</span><strong>Ladrillo Radar</strong></div>
         <p>No es asesoramiento financiero. La inversión puede implicar pérdida de capital, retrasos e iliquidez.</p>
         <a href="../../">← Volver al radar</a>
+        <UberleapCredit />
       </footer>
     </main>
   );
