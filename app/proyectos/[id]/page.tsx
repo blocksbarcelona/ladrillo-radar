@@ -191,6 +191,7 @@ export default async function ProjectDetail({
             <span>05</span>
             <div><p>PROMOTOR Y ESTRUCTURA</p><h2>Quién está detrás</h2></div>
           </div>
+          <div className="company-caveat"><strong>LÍMITE DEL ANÁLISIS</strong><p>{project.company.caveat}</p></div>
           <div className="company-lead">
             <div>
               <span>NOMBRE PÚBLICO</span>
@@ -209,7 +210,6 @@ export default async function ProjectDetail({
             <div><span>HISTORIAL</span><p>{project.company.trackRecord}</p></div>
             <div><span>ALINEACIÓN</span><p>{project.company.alignment}</p></div>
           </div>
-          <div className="company-caveat"><strong>LÍMITE DEL ANÁLISIS</strong><p>{project.company.caveat}</p></div>
         </div>
 
         <div className="detail-section" id="documentos">

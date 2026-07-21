@@ -56,6 +56,10 @@ for (const id of [
     assert.match(html, /Carencias y riesgos pendientes/);
     assert.match(html, /Inconsistencias y matices/);
     assert.match(html, /Quién está detrás/);
+    const companyHeadingIndex = html.indexOf("Quién está detrás");
+    const analysisLimitIndex = html.indexOf("LÍMITE DEL ANÁLISIS");
+    const companyLeadIndex = html.indexOf('class="company-lead"');
+    assert.ok(companyHeadingIndex < analysisLimitIndex && analysisLimitIndex < companyLeadIndex);
     assert.match(html, /Documentación localizada/);
     assert.match(html, /Preguntas que deben tener respuesta/);
     assert.match(html, /escala de 0 a 10/);

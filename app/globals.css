@@ -512,8 +512,8 @@ footer > a { justify-self: end; border-bottom: 1px solid currentColor; font-size
 .company-grid > div:nth-child(n + 3) { border-top: 1px solid rgba(255,255,255,.35); }
 .company-grid p { margin: 0; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.55; }
 .company-caveat { padding: 22px 27px; display: grid; grid-template-columns: 180px 1fr; gap: 20px; background: var(--acid); color: var(--ink); }
-.company-caveat strong { font: 800 9px/1.3 monospace; letter-spacing: .08em; }
-.company-caveat p { margin: 0; font-size: 12px; line-height: 1.5; }
+.company-caveat strong { font: 800 18px/1.3 monospace; letter-spacing: .08em; }
+.company-caveat p { margin: 0; font-size: 24px; line-height: 1.5; }
 
 .documents-list { border-top: 1px solid var(--ink); }
 .document-row { min-height: 78px; display: grid; grid-template-columns: .8fr 170px 1.3fr; gap: 22px; align-items: center; border-bottom: 1px solid var(--ink); }
@@ -907,8 +907,8 @@ footer > a { font-size: 14px; color: var(--blue); }
 .company-lead h3 { font-size: 28px; letter-spacing: -.02em; }
 .company-lead p, .company-grid p { color: var(--ink); font-size: 15px; line-height: 1.65; }
 .company-caveat { background: #fffaeb; color: var(--ink); }
-.company-caveat strong { font-family: Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: .03em; }
-.company-caveat p { font-size: 14px; line-height: 1.6; }
+.company-caveat strong { font-family: Arial, Helvetica, sans-serif; font-size: 26px; letter-spacing: .03em; }
+.company-caveat p { font-size: 28px; line-height: 1.45; }
 .documents-list, .document-row { border-color: var(--line); }
 .document-title strong { font-size: 15px; }
 .document-title span { font-size: 13px; }
@@ -939,4 +939,6 @@ footer > a { font-size: 14px; color: var(--blue); }
   .detail-title h1 { font-size: 46px; }
   .detail-date-banner, .detail-metrics div:nth-child(n + 3), .summary-columns > div + div,
   .issue-impact, .issue-verify, .company-lead > div + div, .company-grid > div { border-color: var(--line); }
+  .company-caveat strong { font-size: 22px; }
+  .company-caveat p { font-size: 22px; }
 }
