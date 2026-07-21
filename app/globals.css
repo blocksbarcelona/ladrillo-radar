@@ -272,7 +272,6 @@ nav a:hover { border-bottom-color: var(--ink); }
   text-align: center;
 }
 .score-chip strong { font-size: 24px; line-height: 0.85; letter-spacing: -0.06em; }
-.score-chip span { font: 750 8px/1 monospace; }
 .project-date {
   min-height: 55px;
   padding: 10px 20px;
@@ -423,7 +422,6 @@ footer > a { justify-self: end; border-bottom: 1px solid currentColor; font-size
 .detail-score > span { font: 800 8px/1 monospace; letter-spacing: .09em; }
 .detail-score > div { display: flex; align-items: baseline; margin-top: 20px; }
 .detail-score strong { font-size: 82px; line-height: .75; letter-spacing: -.085em; }
-.detail-score small { font: 800 12px/1 monospace; }
 .detail-score p { margin: 22px 0 0; padding-top: 15px; border-top: 1px solid var(--ink); font-size: 11px; font-weight: 750; }
 .detail-date-banner {
   min-height: 62px;
@@ -770,7 +768,6 @@ nav { gap: 26px; font-size: 14px; font-weight: 600; }
   background: #eff4ff;
 }
 .score-chip strong { color: #1849a9; font-size: 25px; letter-spacing: -.02em; }
-.score-chip span { color: #1849a9; font-family: Arial, Helvetica, sans-serif; font-size: 12px; }
 .project-date { min-height: 58px; background: #eff8ff; color: var(--ink); }
 .project-date span {
   color: var(--muted);
@@ -855,7 +852,6 @@ footer > a { font-size: 14px; color: var(--blue); }
 .detail-score { border-color: #84adff; border-radius: 10px; background: #eff4ff; }
 .detail-score > span { font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .03em; }
 .detail-score strong { color: #1849a9; font-size: 66px; letter-spacing: -.04em; }
-.detail-score small { color: #1849a9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
 .detail-score p { border-color: #b2ccff; font-size: 14px; }
 .detail-date-banner { background: #eff8ff; color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .detail-date-banner span { color: var(--muted); font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .03em; }

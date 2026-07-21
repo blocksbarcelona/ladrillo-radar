@@ -1025,7 +1025,7 @@ export const projects: Project[] = [
       { label: "Licencia", value: "Pendiente" },
       {
         label: "Conversión de escala",
-        value: "Riesgo local 7,5/10 → nota web 2,5/10",
+        value: "Riesgo local 7,5 → nota web 2,5",
         note: "El informe local usa 10 como mayor riesgo; Ladrillo Radar usa 10 como mejor calidad.",
       },
       { label: "Pago", value: "Bullet · amortización desde mes 3 con compensación" },

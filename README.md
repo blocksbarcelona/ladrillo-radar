@@ -9,7 +9,7 @@ proyecto.
 
 ## Propuesta de producto
 
-La interfaz se organiza en seis niveles:
+La interfaz visible se organiza en cinco niveles:
 
 1. **Resumen compacto**: número de proyectos actuales y pasados sin ocultar el
    contenido principal tras una cabecera alta.
@@ -19,9 +19,10 @@ La interfaz se organiza en seis niveles:
    pasadas según la fecha del corte.
 4. **Auditoría por proyecto**: carencias, inconsistencias, cálculos propios,
    promotor, documentación, preguntas pendientes y fuentes.
-5. **Comparativa**: una tabla normalizada para detectar diferencias y datos no
-   publicados.
-6. **Método**: ocho bloques ponderados que hacen auditable la puntuación sobre 10.
+5. **Método**: ocho bloques ponderados que hacen auditable la puntuación en
+   escala de 0 a 10.
+
+La tabla comparativa permanece implementada, pero está oculta temporalmente.
 
 El lenguaje visual usa fondo claro, tipografía legible y color funcional para
 alertas y resultados. No reproduce el aspecto de las plataformas: la prioridad

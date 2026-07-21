@@ -14,6 +14,7 @@ import {
 } from "../data/projects";
 
 type SortMode = "nearest" | "farthest" | "score";
+const SHOW_COMPARISON = false;
 
 const methodology = [
   ["Garantía y cobertura", "20%", "Rango, alcance de la garantía, LTV total y colchón en ejecución"],
@@ -67,9 +68,8 @@ function ProjectCard({ project }: { project: Project }) {
           <h3>{project.name}</h3>
           <p>{project.location}</p>
         </div>
-        <div className="score-chip" aria-label={`${formatScore(project.score)} sobre 10`}>
+        <div className="score-chip" aria-label={`${formatScore(project.score)}, escala de 0 a 10`}>
           <strong>{formatScore(project.score)}</strong>
-          <span>/10</span>
         </div>
       </div>
 
@@ -143,7 +143,7 @@ export default function Home() {
         </a>
         <nav aria-label="Navegación principal">
           <a href="#proyectos">Proyectos</a>
-          <a href="#comparativa">Comparativa</a>
+          {SHOW_COMPARISON && <a href="#comparativa">Comparativa</a>}
           <a href="#metodo">Método</a>
         </nav>
         <span className="snapshot">CORTE · {SNAPSHOT_LABEL}</span>
@@ -241,6 +241,7 @@ export default function Home() {
         )}
       </section>
 
+      {SHOW_COMPARISON && (
       <section className="comparison-section" id="comparativa">
         <div className="section-heading inverse">
           <div>
@@ -283,12 +284,13 @@ export default function Home() {
               ))}
               <tr className="total-row">
                 <td>Puntuación</td>
-                {projects.map((project) => <td key={project.id}>{formatScore(project.score)}/10</td>)}
+                {projects.map((project) => <td key={project.id}>{formatScore(project.score)}</td>)}
               </tr>
             </tbody>
           </table>
         </div>
       </section>
+      )}
 
       <section className="method-section" id="metodo">
         <div className="method-intro">

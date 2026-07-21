@@ -21,9 +21,11 @@ test("exports the complete static radar", async () => {
   assert.match(html, /proyectos\/vivaldi-ii\//);
   assert.match(html, /proyectos\/residencial-altay\//);
   assert.match(html, /proyectos\/madrid-atlas-nuevo-ahijones\//);
-  assert.match(html, /6,5 sobre 10/);
-  assert.match(html, /7,1 sobre 10/);
-  assert.match(html, /2,5 sobre 10/);
+  assert.match(html, /6,5, escala de 0 a 10/);
+  assert.match(html, /7,1, escala de 0 a 10/);
+  assert.match(html, /2,5, escala de 0 a 10/);
+  assert.doesNotMatch(html, /COMPARATIVA DIRECTA|href="\#comparativa"/);
+  assert.doesNotMatch(html, /\/10/);
   assert.match(html, /logos\/urbanitae\.svg/);
   assert.match(html, /logos\/wecity\.png/);
   assert.match(html, /\.\/assets\//);
@@ -56,7 +58,8 @@ for (const id of [
     assert.match(html, /Quién está detrás/);
     assert.match(html, /Documentación localizada/);
     assert.match(html, /Preguntas que deben tener respuesta/);
-    assert.match(html, /sobre 10/);
+    assert.match(html, /escala de 0 a 10/);
+    assert.doesNotMatch(html, /\/10/);
     assert.match(html, /\.\.\/\.\.\/assets\//);
     assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
   });
