@@ -49,6 +49,18 @@ test("exports the complete static radar", async () => {
   ]);
 });
 
+test("uses a vivid, clearly differentiated score palette", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(css, /--score-bg: #009f5d/);
+  assert.match(css, /--score-bg: #8bd448/);
+  assert.match(css, /--score-bg: #ffd60a/);
+  assert.match(css, /--score-bg: #ff8a00/);
+  assert.match(css, /--score-bg: #ef3340/);
+  assert.match(css, /\.score-chip strong \{[^}]*font-size: 32px/);
+  assert.match(css, /\.detail-score strong \{[^}]*font-size: 78px/);
+});
+
 for (const id of [
   "residencial-mas-marti",
   "urban-suites-alicante",
