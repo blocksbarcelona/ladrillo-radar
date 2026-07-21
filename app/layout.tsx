@@ -15,17 +15,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ladrillo Radar",
     description:
-      "Seis proyectos de Civislend, Urbanitae y wecity auditados con un mismo criterio.",
+      "Proyectos de Civislend, Urbanitae y wecity auditados con un mismo criterio.",
     type: "website",
     locale: "es_ES",
-    images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630 }],
+    siteName: "Ladrillo Radar",
+    images: [{ url: `${siteUrl}/og.png?v=2`, width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ladrillo Radar",
     description:
-      "Seis proyectos de Civislend, Urbanitae y wecity auditados con un mismo criterio.",
-    images: [`${siteUrl}/og.png`],
+      "Proyectos de Civislend, Urbanitae y wecity auditados con un mismo criterio.",
+    images: [`${siteUrl}/og.png?v=2`],
   },
 };
 

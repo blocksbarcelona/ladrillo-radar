@@ -54,6 +54,9 @@ test("exports the complete static radar", async () => {
   assert.match(html, /\.\/assets\//);
   assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
+  assert.match(html, /property="og:site_name" content="Ladrillo Radar"/);
+  assert.match(html, /property="og:image" content="[^"]*\/og\.png\?v=2"/);
+  assert.doesNotMatch(html, /Seis proyectos de Civislend/);
   assertCloudflareAnalytics(html);
   assertUberleapCredit(html);
 
