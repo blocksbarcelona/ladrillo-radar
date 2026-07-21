@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
-import { getScoreBand, isPastProject, projects } from "../data/projects.ts";
+import {
+  getScoreBand,
+  isPastProject,
+  isProjectWithinRetention,
+  PAST_PROJECT_RETENTION_DAYS,
+  projects,
+} from "../data/projects.ts";
 
 const root = new URL("../dist/client/", import.meta.url);
 const cloudflareToken = "ba97714010c641e8a21caf29e648a45f";
@@ -26,6 +32,10 @@ test("exports the complete static radar", async () => {
   assert.match(html, /Ladrillo Radar/);
   assert.match(html, /Actuales y próximos/);
   assert.match(html, /Proyectos pasados/);
+  assert.match(
+    html,
+    /Se conservan durante (?:<!-- -->)?30(?:<!-- -->)? días desde su fecha y hora de apertura/,
+  );
   assert.match(html, /Fecha · más cercanos/);
   assert.match(html, /Residencial Mas Martí/);
   assert.match(html, /Urban Suites Alicante/);
@@ -97,6 +107,19 @@ test("uses an exact date and time to move projects to the past", () => {
     const deadline = Date.parse(project.date.isoDateTime);
     assert.equal(isPastProject(project, deadline - 1), false);
     assert.equal(isPastProject(project, deadline), true);
+  }
+});
+
+test("keeps past projects visible for 30 full days", () => {
+  assert.equal(PAST_PROJECT_RETENTION_DAYS, 30);
+
+  for (const project of projects) {
+    const opening = Date.parse(project.date.isoDateTime);
+    const retentionDeadline = opening + PAST_PROJECT_RETENTION_DAYS * 24 * 60 * 60 * 1_000;
+
+    assert.equal(isProjectWithinRetention(project, opening - 1), true);
+    assert.equal(isProjectWithinRetention(project, retentionDeadline - 1), true);
+    assert.equal(isProjectWithinRetention(project, retentionDeadline), false);
   }
 });
 

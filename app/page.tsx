@@ -7,6 +7,8 @@ import {
   formatScore,
   getScoreBand,
   isPastProject,
+  isProjectWithinRetention,
+  PAST_PROJECT_RETENTION_DAYS,
   projects,
   SNAPSHOT_DATE,
   SNAPSHOT_LABEL,
@@ -139,15 +141,20 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, []);
 
+  const retainedProjects = useMemo(
+    () => projects.filter((project) => isProjectWithinRetention(project, currentTime)),
+    [currentTime],
+  );
+
   const visibleProjects = useMemo(() => {
-    const filtered = projects.filter(
+    const filtered = retainedProjects.filter(
       (project) =>
         (platform === "Todas" || project.platform === platform) &&
         (risk === "Todos" || project.risk === risk),
     );
 
     return sortProjects(filtered, sortMode);
-  }, [platform, risk, sortMode]);
+  }, [platform, retainedProjects, risk, sortMode]);
 
   const currentProjects = visibleProjects.filter((project) => !isPastProject(project, currentTime));
   const pastProjects = visibleProjects.filter((project) => isPastProject(project, currentTime));
@@ -172,14 +179,14 @@ export default function Home() {
           <p className="eyebrow">ANÁLISIS INDEPENDIENTE · CROWDFUNDING INMOBILIARIO</p>
           <h1>Proyectos en radar</h1>
           <p className="overview-copy">
-            Seis auditorías locales de Civislend, Urbanitae y wecity, normalizadas
-            con sus fechas, cifras, documentación, promotor e inconsistencias.
+            Auditorías locales de Civislend, Urbanitae y wecity, normalizadas con
+            sus fechas, cifras, documentación, promotor e inconsistencias.
           </p>
         </div>
         <div className="overview-stats" aria-label="Resumen del corte">
-          <div><strong>{projects.length}</strong><span>analizados</span></div>
-          <div><strong>{projects.filter((project) => !isPastProject(project, currentTime)).length}</strong><span>actuales</span></div>
-          <div><strong>{projects.filter((project) => isPastProject(project, currentTime)).length}</strong><span>pasados</span></div>
+          <div><strong>{retainedProjects.length}</strong><span>analizados</span></div>
+          <div><strong>{retainedProjects.filter((project) => !isPastProject(project, currentTime)).length}</strong><span>actuales</span></div>
+          <div><strong>{retainedProjects.filter((project) => isPastProject(project, currentTime)).length}</strong><span>pasados</span></div>
         </div>
       </section>
 
@@ -248,7 +255,7 @@ export default function Home() {
             <span className="section-index">02</span>
             <h2 id="past-title">Proyectos pasados</h2>
           </div>
-          <p>La clasificación usa la fecha y hora publicadas y se actualiza automáticamente.</p>
+          <p>Se conservan durante {PAST_PROJECT_RETENTION_DAYS} días desde su fecha y hora de apertura.</p>
         </div>
         {pastProjects.length ? (
           <div className="project-grid">

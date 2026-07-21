@@ -1182,6 +1182,20 @@ export function isPastProject(project: Project, at: Date | number = Date.now()) 
   return Date.parse(project.date.isoDateTime) <= referenceTime;
 }
 
+export const PAST_PROJECT_RETENTION_DAYS = 30;
+
+export function isProjectWithinRetention(
+  project: Project,
+  at: Date | number = Date.now(),
+) {
+  const referenceTime = typeof at === "number" ? at : at.getTime();
+  const retentionDeadline =
+    Date.parse(project.date.isoDateTime) +
+    PAST_PROJECT_RETENTION_DAYS * 24 * 60 * 60 * 1_000;
+
+  return referenceTime < retentionDeadline;
+}
+
 export function getProject(id: string) {
   return projects.find((project) => project.id === id);
 }
