@@ -215,7 +215,7 @@ export default async function ProjectDetail({
         <div className="detail-section" id="documentos">
           <div className="detail-section-heading">
             <span>06</span>
-            <div><p>CONTROL DE EVIDENCIAS</p><h2>Documentación localizada</h2></div>
+            <div><h2>Documentación</h2></div>
           </div>
           <div className="documents-list">
             {project.documents.map((document) => {

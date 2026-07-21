@@ -60,7 +60,8 @@ for (const id of [
     const analysisLimitIndex = html.indexOf("LÍMITE DEL ANÁLISIS");
     const companyLeadIndex = html.indexOf('class="company-lead"');
     assert.ok(companyHeadingIndex < analysisLimitIndex && analysisLimitIndex < companyLeadIndex);
-    assert.match(html, /Documentación localizada/);
+    assert.match(html, /<h2>Documentación<\/h2>/);
+    assert.doesNotMatch(html, /CONTROL DE EVIDENCIAS|Documentación localizada/);
     assert.match(html, /Preguntas que deben tener respuesta/);
     assert.match(html, /escala de 0 a 10/);
     const documentLinks = [...html.matchAll(/<a class="document-row document-link" href="([^"]+)"/g)]
