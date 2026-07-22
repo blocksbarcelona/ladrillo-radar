@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 import type { Project } from "../../data/projects";
+import {
+  isEncodedWecityDocumentUrl,
+  OfficialDocumentActions,
+} from "./OfficialDocumentActions";
 
 function statusClass(status: string) {
   return status
@@ -42,11 +46,13 @@ export function ProjectDocuments({
   eventDateTime,
   eventLabel,
   initialPassed,
+  projectUrl,
 }: {
   documents: Project["documents"];
   eventDateTime: string;
   eventLabel: string;
   initialPassed: boolean;
+  projectUrl: string;
 }) {
   const passed = useProjectPassed(eventDateTime, initialPassed);
 
@@ -70,11 +76,22 @@ export function ProjectDocuments({
         {documents.map((document) => {
           const restrictedToInvestors = passed && Boolean(document.url);
           const displayedStatus = restrictedToInvestors ? "Solo para inversores" : document.status;
+          const encodedWecityDocument = Boolean(
+            document.url && isEncodedWecityDocumentUrl(document.url),
+          );
           const content = (
             <>
               <div className="document-title">
                 <strong>{document.name}</strong>
-                {document.url && (
+                {document.url && encodedWecityDocument && (
+                  <OfficialDocumentActions
+                    url={document.url}
+                    label={document.name}
+                    restricted={document.status === "Acceso restringido"}
+                    accessUrl={projectUrl}
+                  />
+                )}
+                {document.url && !encodedWecityDocument && (
                   <span>{restrictedToInvestors ? "Acceso para inversores ↗" : "Ver documento ↗"}</span>
                 )}
               </div>
@@ -85,7 +102,7 @@ export function ProjectDocuments({
             </>
           );
 
-          return document.url ? (
+          return document.url && !encodedWecityDocument ? (
             <a
               className="document-row document-link"
               href={document.url}

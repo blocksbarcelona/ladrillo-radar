@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformLogo } from "../../components/PlatformLogo";
+import { OfficialDocumentActions } from "../../components/OfficialDocumentActions";
 import { ProjectDocuments } from "../../components/ProjectDocuments";
 import { UberleapCredit } from "../../components/UberleapCredit";
 import {
@@ -202,12 +203,59 @@ export default async function ProjectDetail({
               <p>{platform.legalName}<br />{platform.register}</p>
             </div>
           </div>
-          <div className="company-grid">
-            <div><span>IDENTIDAD</span><p>{project.company.identity}</p></div>
-            <div><span>PERFIL</span><p>{project.company.profile}</p></div>
-            <div><span>HISTORIAL</span><p>{project.company.trackRecord}</p></div>
-            <div><span>ALINEACIÓN</span><p>{project.company.alignment}</p></div>
-          </div>
+          {project.company.summary && project.company.evidence ? (
+            <>
+              <div className="company-snapshot" aria-label="Indicadores empresariales destacados">
+                {project.company.summary.map((item) => (
+                  <div key={item.label}>
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                    <p>{item.note}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="company-evidence" aria-label="Comprobaciones sobre empresa y promotor">
+                <div className="company-evidence-header" aria-hidden="true">
+                  <span>COMPROBACIÓN</span><span>ESTADO</span><span>CONCLUSIÓN Y EVIDENCIA</span><span>FUENTES</span>
+                </div>
+                {project.company.evidence.map((item) => (
+                  <article className="company-evidence-row" key={item.label}>
+                    <h3>{item.label}</h3>
+                    <div>
+                      <span className={`company-status company-status-${item.status.toLowerCase().replace(" ", "-")}`}>
+                        {item.status}
+                      </span>
+                    </div>
+                    <p>{item.summary}</p>
+                    <div className="company-evidence-source">
+                      <small>{item.asOf}</small>
+                      <div>
+                        {item.sources.map((source) => (
+                          <div className="company-evidence-document" key={`${item.label}-${source.url}`}>
+                            <strong>{source.label}</strong>
+                            <OfficialDocumentActions
+                              url={source.url}
+                              label={`${project.name} · ${source.label}`}
+                              compact
+                              restricted={source.access === "restricted"}
+                              accessUrl={project.sources[0].url}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="company-grid">
+              <div><span>IDENTIDAD</span><p>{project.company.identity}</p></div>
+              <div><span>PERFIL</span><p>{project.company.profile}</p></div>
+              <div><span>HISTORIAL</span><p>{project.company.trackRecord}</p></div>
+              <div><span>ALINEACIÓN</span><p>{project.company.alignment}</p></div>
+            </div>
+          )}
         </div>
 
         <div className="detail-section" id="documentos">
@@ -220,6 +268,7 @@ export default async function ProjectDetail({
             eventDateTime={project.date.isoDateTime}
             eventLabel={project.date.label}
             initialPassed={past}
+            projectUrl={project.sources[0].url}
           />
         </div>
 

@@ -530,6 +530,13 @@ footer > a { justify-self: end; border-bottom: 1px solid currentColor; font-size
 .document-title { display: grid; gap: 6px; }
 .document-title strong { font-size: 14px; }
 .document-title span { color: var(--blue); font-size: 11px; font-weight: 700; }
+.official-document-actions { display: grid; gap: 5px; }
+.official-document-actions > div { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.official-document-actions button, .official-document-actions a { appearance: none; margin: 0; padding: 0; border: 0; background: transparent; color: var(--blue); font: 800 11px/1.35 Arial, Helvetica, sans-serif; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+.official-document-actions button:hover, .official-document-actions button:focus-visible, .official-document-actions a:hover, .official-document-actions a:focus-visible { color: #00359e; text-decoration-thickness: 2px; outline-offset: 3px; }
+.official-document-actions button:disabled { color: var(--muted); cursor: wait; }
+.official-document-notice { color: #067647 !important; font-size: 11px !important; font-weight: 700; line-height: 1.4; }
+.official-document-error { max-width: 440px; color: #b42318 !important; font-size: 11px !important; font-weight: 700; line-height: 1.4; }
 .document-row p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.4; }
 .document-status { width: fit-content; padding: 7px 9px; border: 1px solid var(--ink); font: 800 8px/1 monospace; text-transform: uppercase; }
 .status-disponible { background: #d7eadc; }
@@ -952,6 +959,31 @@ footer > a { font-size: 14px; color: var(--blue); }
 .company-caveat { background: #fffaeb; color: var(--ink); }
 .company-caveat strong { font-family: Arial, Helvetica, sans-serif; font-size: 26px; letter-spacing: .03em; }
 .company-caveat p { font-size: 28px; line-height: 1.45; }
+.company-snapshot { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-top: 0; background: var(--white); }
+.company-snapshot > div { min-width: 0; padding: 19px 20px; }
+.company-snapshot > div + div { border-left: 1px solid var(--line); }
+.company-snapshot span, .company-evidence-header span { display: block; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.company-snapshot strong { display: block; margin-top: 8px; color: var(--ink); font-size: 21px; letter-spacing: -.025em; }
+.company-snapshot p { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.company-evidence { border: 1px solid var(--line); border-top: 0; background: var(--white); }
+.company-evidence-header, .company-evidence-row { display: grid; grid-template-columns: minmax(150px, .72fr) minmax(112px, .48fr) minmax(310px, 2fr) minmax(150px, .7fr); column-gap: 18px; align-items: start; }
+.company-evidence-header { padding: 11px 20px; background: #f2f4f7; border-bottom: 1px solid var(--line); }
+.company-evidence-row { padding: 18px 20px; }
+.company-evidence-row + .company-evidence-row { border-top: 1px solid var(--line); }
+.company-evidence-row h3 { margin: 2px 0 0; font-size: 15px; line-height: 1.35; letter-spacing: -.01em; }
+.company-evidence-row > p { margin: 0; color: #344054; font-size: 14px; line-height: 1.55; }
+.company-status { display: inline-flex; align-items: center; min-height: 25px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; background: #f9fafb; color: #344054; font-size: 11px; font-weight: 800; line-height: 1.2; }
+.company-status-verificado { border-color: #a6f4c5; background: #ecfdf3; color: #067647; }
+.company-status-declarado { border-color: #b2ccff; background: #eff4ff; color: #175cd3; }
+.company-status-parcial { border-color: #fedf89; background: #fffaeb; color: #b54708; }
+.company-status-contradictorio { border-color: #fda29b; background: #fef3f2; color: #b42318; }
+.company-status-no-localizado { border-color: #d0d5dd; background: #f2f4f7; color: #475467; }
+.company-evidence-source small { display: block; color: var(--muted); font-size: 11px; line-height: 1.35; }
+.company-evidence-source > div { display: grid; gap: 8px; margin-top: 6px; }
+.company-evidence-document { display: grid; gap: 3px; }
+.company-evidence-document > strong { color: var(--ink); font-size: 12px; }
+.official-document-actions-compact > div { gap: 4px 9px; }
+.official-document-actions-compact button, .official-document-actions-compact a { font-size: 11px; }
 .documents-list, .document-row { border-color: var(--line); }
 .document-title strong { font-size: 15px; }
 .document-title span { font-size: 13px; }
@@ -965,6 +997,59 @@ footer > a { font-size: 14px; color: var(--blue); }
 .sources-list p { font-size: 14px; line-height: 1.5; }
 .sources-list > a > span, .sources-list em { font-family: Arial, Helvetica, sans-serif; font-size: 12px; letter-spacing: .02em; }
 .analysis-note { font-size: 14px; line-height: 1.6; }
+
+/* Project-detail readability floor: matches the 15 px body copy used in homepage cards. */
+.detail-header nav,
+.detail-header .back-link,
+.detail-breadcrumb,
+.detail-platform-row .state-pill,
+.detail-score > span,
+.detail-score p,
+.detail-date-banner span,
+.detail-date-banner p,
+.detail-metrics span,
+.detail-section-heading > span,
+.detail-section-heading p,
+.issue-index,
+.issue-card p,
+.issue-card > div > span,
+.calculation-card span,
+.calculation-card p,
+.calculation-card .formula strong,
+.facts-grid dt,
+.facts-grid p,
+.company-lead span,
+.company-grid span,
+.company-snapshot span,
+.company-snapshot p,
+.company-evidence-header span,
+.company-evidence-row > p,
+.company-status,
+.company-evidence-source small,
+.company-evidence-document > strong,
+.official-document-actions button,
+.official-document-actions a,
+.official-document-notice,
+.official-document-error,
+.documents-access-notice > span,
+.documents-access-notice p,
+.document-title span,
+.document-row p,
+.document-status,
+.questions-section li::before,
+.sources-list > a > span,
+.sources-list p,
+.sources-list em,
+.analysis-note,
+#detalle footer p,
+#detalle footer > a {
+  font-size: 15px !important;
+}
+
+.detail-header .brand-mark,
+#detalle footer .brand-mark {
+  font-size: 15px;
+}
 
 @media (max-width: 1100px) {
   .platform-picker { border-color: var(--line); }
@@ -984,4 +1069,14 @@ footer > a { font-size: 14px; color: var(--blue); }
   .issue-impact, .issue-verify, .company-lead > div + div, .company-grid > div { border-color: var(--line); }
   .company-caveat strong { font-size: 22px; }
   .company-caveat p { font-size: 22px; }
+  .company-snapshot { grid-template-columns: 1fr 1fr; }
+  .company-snapshot > div:nth-child(3) { border-left: 0; }
+  .company-snapshot > div:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .company-evidence-header { display: none; }
+  .company-evidence-row { grid-template-columns: 1fr auto; gap: 10px 14px; padding: 17px 16px; }
+  .company-evidence-row h3 { grid-column: 1; }
+  .company-evidence-row > div:nth-child(2) { grid-column: 2; }
+  .company-evidence-row > p { grid-column: 1 / -1; }
+  .company-evidence-source { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .company-evidence-source > div { justify-content: flex-end; }
 }

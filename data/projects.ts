@@ -5,6 +5,12 @@ export type DocumentStatus =
   | "Disponible en la plataforma"
   | "Acceso restringido"
   | "No localizado";
+export type CompanyEvidenceStatus =
+  | "Verificado"
+  | "Declarado"
+  | "Parcial"
+  | "Contradictorio"
+  | "No localizado";
 
 export const SNAPSHOT_DATE = "2026-07-22";
 export const SNAPSHOT_LABEL = "22 JUL 2026";
@@ -64,6 +70,22 @@ export type Project = {
     trackRecord: string;
     alignment: string;
     caveat: string;
+    summary?: Array<{
+      label: string;
+      value: string;
+      note: string;
+    }>;
+    evidence?: Array<{
+      label: string;
+      status: CompanyEvidenceStatus;
+      summary: string;
+      asOf: string;
+      sources: Array<{
+        label: string;
+        url: string;
+        access?: "public" | "restricted";
+      }>;
+    }>;
   };
   deficiencies: Array<{
     severity: Severity;
@@ -1053,6 +1075,97 @@ export const projects: Project[] = [
         "Se declara una aportación de 1.021.349,15 €, superior al préstamo solicitado, pero la documentación publica tres costes diferentes para la adquisición.",
       caveat:
         "Las últimas cuentas disponibles muestran 21.000 € de patrimonio neto frente a 2,63 M€ de pasivo corriente: sólo un 0,79% de los activos.",
+      summary: [
+        { label: "Constitución", value: "Nueva creación", note: "Fecha exacta no localizada" },
+        { label: "Patrimonio neto 2026", value: "21.000 €", note: "Extracto financiero del rating" },
+        { label: "Pasivo corriente 2026", value: "2.629.770 €", note: "99,21% del activo publicado" },
+        { label: "Aportación declarada", value: "1.021.349,15 €", note: "52,61% de la adquisición" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro",
+          status: "Verificado",
+          summary:
+            "ATLAS NUEVOS DESARROLLOS S. COOP. MAD. (F24777443) consta en el Registro de Cooperativas de Madrid, hoja 28/CM-6474, con Lucía Lanseros García como presidenta; Coóptima actúa como gestora.",
+          asOf: "FDD · 20 jul 2026",
+          sources: [
+            { label: "Ficha de datos fundamentales", url: "https://api.wecity.com/opportunities/290/doc?file=139", access: "restricted" },
+          ],
+        },
+        {
+          label: "Presencia real",
+          status: "Parcial",
+          summary:
+            "La FDD acredita domicilio social en Paseo de la Castellana 100 y órgano rector. El expediente oficial revisado no identifica una web corporativa propia con aviso legal coincidente de la cooperativa.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Ficha de datos fundamentales", url: "https://api.wecity.com/opportunities/290/doc?file=139", access: "restricted" },
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/290/doc?file=101", access: "restricted" },
+          ],
+        },
+        {
+          label: "Experiencia",
+          status: "Declarado",
+          summary:
+            "El dossier atribuye a Coóptima más de 25 años en residencial y cooperativas. No aporta una relación normalizada de promociones con inversión, plazo, desviación, entrega y resultado final.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/290/doc?file=101", access: "restricted" },
+          ],
+        },
+        {
+          label: "Historial en plataformas",
+          status: "Declarado",
+          summary:
+            "wecity declara cinco proyectos cooperativos gestionados por Coóptima: dos devueltos con éxito y tres dentro de plazo, sin resultados documentales individualizados en el expediente.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/290/doc?file=101", access: "restricted" },
+          ],
+        },
+        {
+          label: "Cuentas depositadas",
+          status: "No localizado",
+          summary:
+            "El rating muestra un balance resumido de 2026 y afirma que la cooperativa es de nueva creación, pero no aporta cuentas anuales completas depositadas, fecha de presentación, auditoría ni salvedades.",
+          asOf: "Datos · 2026",
+          sources: [
+            { label: "Rating", url: "https://api.wecity.com/opportunities/290/doc?file=133", access: "restricted" },
+          ],
+        },
+        {
+          label: "Solvencia y liquidez",
+          status: "Parcial",
+          summary:
+            "El rating publica 2.650.770 € de activo corriente, 2.629.770 € de pasivo corriente y 21.000 € de patrimonio: capital circulante de 21.000 €, liquidez corriente 1,008 y patrimonio equivalente al 0,79% del activo. No desglosa caja ni vencimientos.",
+          asOf: "Datos · 2026",
+          sources: [
+            { label: "Rating", url: "https://api.wecity.com/opportunities/290/doc?file=133", access: "restricted" },
+          ],
+        },
+        {
+          label: "Incidencias",
+          status: "Contradictorio",
+          summary:
+            "El rating otorga AAA al promotor afirmando que ha considerado la experiencia de Impulsa Proyectos Inmobiliarios S.L., entidad distinta de la cooperativa identificada en la FDD.",
+          asOf: "Rating · jul 2026",
+          sources: [
+            { label: "Rating", url: "https://api.wecity.com/opportunities/290/doc?file=133", access: "restricted" },
+            { label: "Ficha de datos fundamentales", url: "https://api.wecity.com/opportunities/290/doc?file=139", access: "restricted" },
+          ],
+        },
+        {
+          label: "Alineación económica",
+          status: "Declarado",
+          summary:
+            "Se declaran 1.021.349,15 € de aportaciones frente a 920.000 € de deuda wecity. El dossier alterna ‘aportación promotor’ y ‘aportaciones cooperativistas’; no acredita que sean patrimonio subordinado disponible para absorber sobrecostes.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/290/doc?file=101", access: "restricted" },
+            { label: "Ficha de datos fundamentales", url: "https://api.wecity.com/opportunities/290/doc?file=139", access: "restricted" },
+          ],
+        },
+      ],
     },
     deficiencies: [
       {
@@ -1251,6 +1364,95 @@ export const projects: Project[] = [
         "La plataforma declara 754.129,13 € ya aportados a adquisición y obra; representan el 42,99% de las necesidades del dossier.",
       caveat:
         "El rating muestra una pérdida neta de 36.106,73 € en 2025 y puntúa con CC la evolución, endeudamiento y ROA; además menciona por error a otra sociedad en la conclusión del promotor.",
+      summary: [
+        { label: "CONSTITUCIÓN", value: "2015", note: "Fecha declarada en el rating" },
+        { label: "PATRIMONIO NETO 2025", value: "689.841,87 €", note: "Extracto financiero del rating" },
+        { label: "RESULTADO 2025", value: "−36.106,73 €", note: "Pérdida neta publicada" },
+        { label: "EQUITY DECLARADO", value: "754.129,13 €", note: "42,99% de las necesidades" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro",
+          status: "Verificado",
+          summary:
+            "ALQAVIA COSTA S.L. (B93426567) figura como prestataria y promotora, inscrita en Málaga y administrada por Pawel-Maciej Czuraj. No se acredita un grupo societario ni el beneficiario último.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Contrato", url: "https://api.wecity.com/opportunities/252/doc?file=204" },
+          ],
+        },
+        {
+          label: "Presencia real",
+          status: "No localizado",
+          summary:
+            "El expediente oficial revisado no identifica una web corporativa propia con aviso legal coincidente; los dominios que aparecen pertenecen a wecity.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/252/doc?file=101" },
+          ],
+        },
+        {
+          label: "Experiencia",
+          status: "Declarado",
+          summary:
+            "La plataforma atribuye ocho proyectos residenciales desde 2017 en La Quinta, La Arquería, Nueva Atalaya y El Paraíso, sin resultados normalizados por promoción.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/252/doc?file=101" },
+          ],
+        },
+        {
+          label: "Historial en plataformas",
+          status: "No localizado",
+          summary:
+            "No consta en la carpeta oficial una relación de operaciones anteriores financiadas colectivamente, con plazo, devolución y rentabilidad final.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/252/doc?file=101" },
+          ],
+        },
+        {
+          label: "Cuentas depositadas",
+          status: "Parcial",
+          summary:
+            "El rating reproduce magnitudes de 2023–2025, pero no aporta las cuentas anuales completas depositadas, fecha de presentación, auditoría ni posibles salvedades.",
+          asOf: "Datos · 2023–2025",
+          sources: [
+            { label: "Rating", url: "https://api.wecity.com/opportunities/252/doc?file=133" },
+          ],
+        },
+        {
+          label: "Solvencia y liquidez",
+          status: "Parcial",
+          summary:
+            "El rating publica 689.841,87 € de patrimonio neto y una pérdida de 36.106,73 € en 2025. Califica con CC evolución, endeudamiento y ROA, sin acreditar caja bancaria disponible.",
+          asOf: "Datos · 2025",
+          sources: [
+            { label: "Rating", url: "https://api.wecity.com/opportunities/252/doc?file=133" },
+          ],
+        },
+        {
+          label: "Incidencias",
+          status: "Contradictorio",
+          summary:
+            "La conclusión del análisis del promotor afirma haber evaluado a Impulsa Proyectos Inmobiliarios S.L., una sociedad distinta de la prestataria.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Rating", url: "https://api.wecity.com/opportunities/252/doc?file=133" },
+          ],
+        },
+        {
+          label: "Alineación económica",
+          status: "Declarado",
+          summary:
+            "Se declaran 754.129,13 € ya aportados a suelo y obra —42,99% del coste—, pero no se publican justificantes bancarios ni conciliación completa de fuentes y usos.",
+          asOf: "Corte · 22 jul 2026",
+          sources: [
+            { label: "Dossier", url: "https://api.wecity.com/opportunities/252/doc?file=101" },
+            { label: "Contrato", url: "https://api.wecity.com/opportunities/252/doc?file=204" },
+          ],
+        },
+      ],
     },
     deficiencies: [
       {
