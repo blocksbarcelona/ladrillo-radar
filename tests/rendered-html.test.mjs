@@ -137,6 +137,24 @@ test("applies the enhanced company diligence to every wecity project", () => {
   }
 });
 
+test("defines one canonical official page for every project", () => {
+  const expectedProjectUrls = new Map([
+    ["toboso-madrid", "https://www.civislend.com/proyecto/963"],
+    ["residencial-mas-marti", "https://www.civislend.com/proyecto/966"],
+    ["urban-suites-alicante", "https://www.civislend.com/proyecto/978"],
+    ["vivaldi-ii", "https://urbanitae.com/es/proyecto/P000499/?goToTab=documents"],
+    ["residencial-altay", "https://urbanitae.com/es/proyecto/P000498/?goToTab=documents"],
+    ["madrid-atlas-nuevo-ahijones", "https://www.wecity.com/oportunidades/madrid-atlas-nuevo-ahijones/"],
+    ["malaga-benahavis", "https://www.wecity.com/oportunidades/malaga-benahavis/"],
+  ]);
+
+  assert.equal(projects.length, expectedProjectUrls.size);
+  for (const project of projects) {
+    assert.equal(project.projectUrl, expectedProjectUrls.get(project.id));
+    assert.equal(new URL(project.projectUrl).protocol, "https:");
+  }
+});
+
 test("uses an exact date and time to move projects to the past", () => {
   for (const project of projects) {
     assert.match(project.date.isoDateTime, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+02:00$/);
@@ -183,20 +201,25 @@ for (const id of [
     assert.match(html, /<h2>Documentación<\/h2>/);
     assert.doesNotMatch(html, /CONTROL DE EVIDENCIAS|Documentación localizada/);
     assert.match(html, /data-document-access="(?:public|investors)"/);
-    assert.match(html, /Documentación reservada a inversores|Ver documento|Acceso para inversores|Ver PDF/);
+    assert.match(html, /Documentación reservada a inversores|Abrir página del proyecto/);
     assert.match(html, /Preguntas que deben tener respuesta/);
     assert.match(html, /escala de 0 a 10/);
     assert.match(html, /class="detail-score score-band-(?:green-strong|green-soft|yellow|orange|red)" data-score-band=/);
     const documentLinks = [...html.matchAll(/<a class="document-row document-link" href="([^"]+)"/g)]
       .map((match) => match[1].replaceAll("&amp;", "&"));
-    const officialSourceLinks = [...html.matchAll(/data-official-document-url="([^"]+)"/g)]
+    const officialSourceLinks = [...html.matchAll(/data-official-project-url="([^"]+)"/g)]
       .map((match) => match[1].replaceAll("&amp;", "&"));
-    assert.ok(documentLinks.length + officialSourceLinks.length > 0, "cada ficha debe enlazar sus documentos localizados");
+    const project = projects.find((item) => item.id === id);
+    assert.ok(project);
+    assert.ok(documentLinks.length + officialSourceLinks.length > 0, "cada ficha debe enlazar su página oficial");
     for (const link of [...documentLinks, ...officialSourceLinks]) {
-      const url = new URL(link);
-      assert.equal(url.protocol, "https:");
-      assert.doesNotMatch(url.hostname, /^(?:localhost|127\.0\.0\.1)$/);
+      assert.equal(link, project.projectUrl);
     }
+    assert.doesNotMatch(
+      html,
+      /href="[^"]*(?:api\.wecity\.com\/opportunities\/\d+\/doc|urbanitae-prod-static-content\/project\/P\d+\/public-document|civislend\.com\/document\/)/,
+    );
+    assert.doesNotMatch(html, />Ver PDF<|>Ver documento|>Descargar<|Fuente oficial \(JSON\)/);
     assert.doesNotMatch(html, /Archivado localmente|repositorio local|archivo local|servidor local|\/Volumes\//i);
     assert.doesNotMatch(html, /\/10/);
     assert.match(html, /\.\.\/\.\.\/assets\//);
@@ -215,33 +238,33 @@ test("publishes the compact company diligence for Málaga Benahavís", async () 
   assert.match(html, /Solvencia y liquidez/);
   assert.match(html, /company-status-contradictorio/);
   assert.match(html, /Impulsa Proyectos Inmobiliarios S\.L\./);
-  assert.match(html, />Ver PDF<\/button>/);
-  assert.doesNotMatch(html, />Descargar<\/button>|Fuente oficial \(JSON\)/);
+  assert.match(html, />Abrir página del proyecto ↗<\/a>/);
+  assert.doesNotMatch(html, />Ver PDF<\/button>|>Descargar<\/button>|Fuente oficial \(JSON\)/);
 
-  const evidenceLinks = [...html.matchAll(/data-official-document-url="([^"]+)"/g)]
+  const evidenceLinks = [...html.matchAll(/data-official-project-url="([^"]+)"/g)]
     .map((match) => match[1].replaceAll("&amp;", "&"));
   assert.ok(evidenceLinks.length >= 8);
   for (const link of evidenceLinks) {
-    const url = new URL(link);
-    assert.equal(url.protocol, "https:");
-    assert.equal(url.hostname, "api.wecity.com");
+    assert.equal(link, "https://www.wecity.com/oportunidades/malaga-benahavis/");
   }
 });
 
-test("publishes the compact company diligence for Madrid Atlas with restricted access", async () => {
+test("publishes the compact company diligence for Madrid Atlas through its project page", async () => {
   const html = await readFile(new URL("proyectos/madrid-atlas-nuevo-ahijones/index.html", root), "utf8");
 
   assert.match(html, /Indicadores empresariales destacados/);
   assert.match(html, /Capital circulante de 21\.000 €|capital circulante de 21\.000 €/);
   assert.match(html, /company-status-contradictorio/);
   assert.match(html, /Impulsa Proyectos Inmobiliarios S\.L\./);
-  assert.match(html, />Acceso en (?:<!-- -->)?wecity(?:<!-- -->)? ↗<\/a>/);
-  assert.match(html, /data-document-access="restricted"/);
+  assert.match(html, />Abrir página del proyecto ↗<\/a>/);
+  assert.match(html, /data-document-access="investors"/);
   assert.doesNotMatch(html, />Ver PDF<\/button>/);
   assert.match(html, /href="https:\/\/www\.wecity\.com\/oportunidades\/madrid-atlas-nuevo-ahijones\/"/);
 
-  const restrictedEvidence = [...html.matchAll(/data-official-document-url="([^"]+)" data-document-access="restricted"/g)];
-  assert.ok(restrictedEvidence.length >= 8);
+  const evidenceLinks = [...html.matchAll(/data-official-project-url="([^"]+)"/g)]
+    .map((match) => match[1].replaceAll("&amp;", "&"));
+  assert.ok(evidenceLinks.length >= 8);
+  assert.ok(evidenceLinks.every((link) => link === "https://www.wecity.com/oportunidades/madrid-atlas-nuevo-ahijones/"));
 });
 
 test("publishes the complete company diligence for every project", async () => {
@@ -265,12 +288,13 @@ test("publishes the complete company diligence for every project", async () => {
   }
 });
 
-test("uses platform-correct actions for company evidence", async () => {
+test("uses only canonical project-page actions for company evidence", async () => {
   const toboso = await readFile(new URL("proyectos/toboso-madrid/index.html", root), "utf8");
-  assert.match(toboso, />Acceso en (?:<!-- -->)?Civislend(?:<!-- -->)? ↗<\/a>/);
-  assert.match(toboso, />Ver fuente ↗<\/a>/);
-  assert.doesNotMatch(toboso, /Acceso en wecity/);
+  assert.match(toboso, />Abrir página del proyecto ↗<\/a>/);
+  assert.doesNotMatch(toboso, /Acceso en |Ver fuente ↗|Ver PDF/);
+  assert.doesNotMatch(toboso, /href="https:\/\/www\.civislend\.com\/document\//);
 
-  const madrid = await readFile(new URL("proyectos/madrid-atlas-nuevo-ahijones/index.html", root), "utf8");
-  assert.match(madrid, />Acceso en (?:<!-- -->)?wecity(?:<!-- -->)? ↗<\/a>/);
+  const vivaldi = await readFile(new URL("proyectos/vivaldi-ii/index.html", root), "utf8");
+  assert.match(vivaldi, /href="https:\/\/urbanitae\.com\/es\/proyecto\/P000499\/\?goToTab=documents"/);
+  assert.doesNotMatch(vivaldi, /href="[^"]*urbanitae-prod-static-content/);
 });

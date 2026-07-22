@@ -231,14 +231,12 @@ export default async function ProjectDetail({
                       <small>{item.asOf}</small>
                       <div>
                         {item.sources.map((source) => (
-                          <div className="company-evidence-document" key={`${item.label}-${source.url}`}>
+                          <div className="company-evidence-document" key={`${item.label}-${source.label}`}>
                             <strong>{source.label}</strong>
                             <OfficialDocumentActions
-                              url={source.url}
+                              projectUrl={project.projectUrl}
                               label={`${project.name} · ${source.label}`}
                               compact
-                              restricted={source.access === "restricted"}
-                              accessUrl={project.sources[0].url}
                             />
                           </div>
                         ))}
@@ -264,11 +262,16 @@ export default async function ProjectDetail({
             <div><h2>Documentación</h2></div>
           </div>
           <ProjectDocuments
-            documents={project.documents}
+            documents={project.documents.map(({ name, status, note }) => ({
+              name,
+              status,
+              note,
+              located: status !== "No localizado",
+            }))}
             eventDateTime={project.date.isoDateTime}
             eventLabel={project.date.label}
             initialPassed={past}
-            projectUrl={project.sources[0].url}
+            projectUrl={project.projectUrl}
           />
         </div>
 
@@ -299,9 +302,10 @@ export default async function ProjectDetail({
           </div>
           <p className="analysis-note">
             Corte documental: {SNAPSHOT_LABEL.toLowerCase()}. La ficha parte de los informes,
-            datos normalizados y documentos originales consultados en las plataformas. Cada documento
-            disponible enlaza a su ubicación web oficial; algunos requieren iniciar sesión. Tras la fecha
-            y hora de apertura, el radar avisa automáticamente de que el acceso queda reservado a inversores. “No localizado”
+            datos normalizados y documentos originales consultados en las plataformas. Las referencias
+            documentales enlazan a la página oficial del proyecto, donde el usuario puede consultar o
+            descargar manualmente los archivos; algunos requieren iniciar sesión. Tras la fecha y hora de
+            apertura, el radar avisa automáticamente de que el acceso queda reservado a inversores. “No localizado”
             significa que no aparece en el material revisado y no prueba que el documento no exista.
           </p>
         </div>

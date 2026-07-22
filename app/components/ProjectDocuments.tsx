@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Project } from "../../data/projects";
-import {
-  isEncodedWecityDocumentUrl,
-  OfficialDocumentActions,
-} from "./OfficialDocumentActions";
+import type { DocumentStatus } from "../../data/projects";
+
+type PublicDocument = {
+  name: string;
+  status: DocumentStatus;
+  note: string;
+  located: boolean;
+};
 
 function statusClass(status: string) {
   return status
@@ -48,7 +51,7 @@ export function ProjectDocuments({
   initialPassed,
   projectUrl,
 }: {
-  documents: Project["documents"];
+  documents: PublicDocument[];
   eventDateTime: string;
   eventLabel: string;
   initialPassed: boolean;
@@ -64,9 +67,9 @@ export function ProjectDocuments({
           <div>
             <strong>Documentación reservada a inversores</strong>
             <p>
-              Desde el {eventLabel}, los documentos ya no están disponibles para todo el mundo:
-              la plataforma limita el acceso a quienes invirtieron en el proyecto. Los enlaces se
-              conservan como referencia oficial y pueden exigir una cuenta inversora autorizada.
+              Desde el {eventLabel}, la plataforma puede limitar el acceso a quienes invirtieron en
+              el proyecto. Los documentos se consultan y descargan manualmente desde la página
+              oficial del proyecto y el acceso puede exigir una cuenta inversora autorizada.
             </p>
           </div>
         </div>
@@ -74,26 +77,13 @@ export function ProjectDocuments({
 
       <div className="documents-list" data-document-access={passed ? "investors" : "public"}>
         {documents.map((document) => {
-          const restrictedToInvestors = passed && Boolean(document.url);
+          const restrictedToInvestors = passed && document.located;
           const displayedStatus = restrictedToInvestors ? "Solo para inversores" : document.status;
-          const encodedWecityDocument = Boolean(
-            document.url && isEncodedWecityDocumentUrl(document.url),
-          );
           const content = (
             <>
               <div className="document-title">
                 <strong>{document.name}</strong>
-                {document.url && encodedWecityDocument && (
-                  <OfficialDocumentActions
-                    url={document.url}
-                    label={document.name}
-                    restricted={document.status === "Acceso restringido"}
-                    accessUrl={projectUrl}
-                  />
-                )}
-                {document.url && !encodedWecityDocument && (
-                  <span>{restrictedToInvestors ? "Acceso para inversores ↗" : "Ver documento ↗"}</span>
-                )}
+                {document.located && <span>Abrir página del proyecto ↗</span>}
               </div>
               <span className={`document-status status-${statusClass(displayedStatus)}`}>
                 {displayedStatus}
@@ -102,10 +92,10 @@ export function ProjectDocuments({
             </>
           );
 
-          return document.url && !encodedWecityDocument ? (
+          return document.located ? (
             <a
               className="document-row document-link"
-              href={document.url}
+              href={projectUrl}
               target="_blank"
               rel="noreferrer"
               key={document.name}

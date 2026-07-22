@@ -38,6 +38,7 @@ export const platformMeta: Record<
 
 export type Project = {
   id: string;
+  projectUrl: string;
   platform: Platform;
   name: string;
   location: string;
@@ -126,6 +127,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "toboso-madrid",
+    projectUrl: "https://www.civislend.com/proyecto/963",
     platform: "Civislend",
     name: "Toboso Madrid",
     location: "Carabanchel · Madrid",
@@ -360,6 +362,7 @@ export const projects: Project[] = [
   },
   {
     id: "residencial-mas-marti",
+    projectUrl: "https://www.civislend.com/proyecto/966",
     platform: "Civislend",
     name: "Residencial Mas Martí",
     location: "Tordera · Barcelona",
@@ -600,6 +603,7 @@ export const projects: Project[] = [
   },
   {
     id: "urban-suites-alicante",
+    projectUrl: "https://www.civislend.com/proyecto/978",
     platform: "Civislend",
     name: "Urban Suites Alicante",
     location: "Distrito Mercado · Alicante",
@@ -864,6 +868,7 @@ export const projects: Project[] = [
   },
   {
     id: "vivaldi-ii",
+    projectUrl: "https://urbanitae.com/es/proyecto/P000499/?goToTab=documents",
     platform: "Urbanitae",
     name: "Vivaldi II",
     location: "Sierra Blanca · Marbella",
@@ -1059,9 +1064,9 @@ export const projects: Project[] = [
     sources: [
       {
         label: "Urbanitae · Vivaldi II",
-        url: "https://blog.urbanitae.com/2026/07/17/vivaldi-ii-deuda-al-1025-anual-para-una-villa-ultra-prime-en-sierra-blanca/",
+        url: "https://urbanitae.com/es/proyecto/P000499/?goToTab=documents",
         type: "Primaria",
-        note: "Presentación pública de la oportunidad; contrastada con la FDD, la tasación y el resumen económico enlazados.",
+        note: "Página oficial del proyecto, incluida la sección desde la que el usuario puede consultar o descargar manualmente sus documentos.",
       },
       {
         label: "CNMV · registro de Urbanitae",
@@ -1073,6 +1078,7 @@ export const projects: Project[] = [
   },
   {
     id: "residencial-altay",
+    projectUrl: "https://urbanitae.com/es/proyecto/P000498/?goToTab=documents",
     platform: "Urbanitae",
     name: "Residencial Altay",
     location: "Armilla · Granada",
@@ -1271,10 +1277,10 @@ export const projects: Project[] = [
     ],
     sources: [
       {
-        label: "Urbanitae",
-        url: "https://urbanitae.com/es/",
+        label: "Urbanitae · Residencial Altay",
+        url: "https://urbanitae.com/es/proyecto/P000498/?goToTab=documents",
         type: "Primaria",
-        note: "Plataforma de origen; el análisis usa la FDD y cuatro documentos originales enlazados en esta ficha.",
+        note: "Página oficial del proyecto, incluida la sección desde la que el usuario puede consultar o descargar manualmente sus documentos.",
       },
       {
         label: "CNMV · registro de Urbanitae",
@@ -1286,6 +1292,7 @@ export const projects: Project[] = [
   },
   {
     id: "madrid-atlas-nuevo-ahijones",
+    projectUrl: "https://www.wecity.com/oportunidades/madrid-atlas-nuevo-ahijones/",
     platform: "wecity",
     name: "Madrid Atlas Nuevo Ahijones",
     location: "Los Ahijones · Madrid",
@@ -1570,6 +1577,7 @@ export const projects: Project[] = [
   },
   {
     id: "malaga-benahavis",
+    projectUrl: "https://www.wecity.com/oportunidades/malaga-benahavis/",
     platform: "wecity",
     name: "Málaga Benahavís",
     location: "El Paraíso · Benahavís · Málaga",
@@ -1856,24 +1864,6 @@ export const projects: Project[] = [
         url: "https://www.wecity.com/oportunidades/malaga-benahavis/",
         type: "Primaria",
         note: "Página oficial de la oportunidad, condiciones, activo, garantía, promotor y salida.",
-      },
-      {
-        label: "wecity API · oportunidad 252",
-        url: "https://api.wecity.com/opportunities/252",
-        type: "Primaria",
-        note: "Identificador, estado, marca temporal exacta y catálogo documental oficial.",
-      },
-      {
-        label: "Contrato de préstamo · wecity",
-        url: "https://api.wecity.com/opportunities/252/doc?file=204",
-        type: "Primaria",
-        note: "Condiciones particulares, garantía, escrow, vencimiento y obligaciones de la promotora.",
-      },
-      {
-        label: "Tasación Alia · wecity",
-        url: "https://api.wecity.com/opportunities/252/doc?file=110",
-        type: "Primaria",
-        note: "Valoración ECO, avance, nota simple utilizada, licencia anexada y advertencias técnicas.",
       },
       {
         label: "CNMV · registro de wecity",
