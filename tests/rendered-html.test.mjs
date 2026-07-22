@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 import {
   getScoreBand,
@@ -112,7 +112,7 @@ test("applies the enhanced company diligence to every wecity project", () => {
   const requiredChecks = [
     "Identidad y perímetro",
     "Presencia real",
-    "Experiencia",
+    "Experiencia comparable",
     "Historial en plataformas",
     "Cuentas depositadas",
     "Solvencia y liquidez",
@@ -235,11 +235,42 @@ test("publishes the compact company diligence for Madrid Atlas with restricted a
   assert.match(html, /Capital circulante de 21\.000 €|capital circulante de 21\.000 €/);
   assert.match(html, /company-status-contradictorio/);
   assert.match(html, /Impulsa Proyectos Inmobiliarios S\.L\./);
-  assert.match(html, />Acceso en wecity ↗<\/a>/);
+  assert.match(html, />Acceso en (?:<!-- -->)?wecity(?:<!-- -->)? ↗<\/a>/);
   assert.match(html, /data-document-access="restricted"/);
   assert.doesNotMatch(html, />Ver PDF<\/button>/);
   assert.match(html, /href="https:\/\/www\.wecity\.com\/oportunidades\/madrid-atlas-nuevo-ahijones\/"/);
 
   const restrictedEvidence = [...html.matchAll(/data-official-document-url="([^"]+)" data-document-access="restricted"/g)];
   assert.ok(restrictedEvidence.length >= 8);
+});
+
+test("publishes the complete company diligence for every project", async () => {
+  const projectPages = await readdir(new URL("proyectos/", root), { withFileTypes: true });
+  for (const page of projectPages.filter((entry) => entry.isDirectory())) {
+    const html = await readFile(new URL(`proyectos/${page.name}/index.html`, root), "utf8");
+    assert.match(html, /Indicadores empresariales destacados/, `${page.name}: faltan indicadores empresariales`);
+    assert.equal((html.match(/class="company-evidence-row"/g) ?? []).length, 8, `${page.name}: la matriz debe tener ocho comprobaciones`);
+    for (const label of [
+      "Identidad y perímetro",
+      "Presencia real",
+      "Experiencia comparable",
+      "Historial en plataformas",
+      "Cuentas depositadas",
+      "Solvencia y liquidez",
+      "Incidencias",
+      "Alineación económica",
+    ]) {
+      assert.match(html, new RegExp(label), `${page.name}: falta ${label}`);
+    }
+  }
+});
+
+test("uses platform-correct actions for company evidence", async () => {
+  const toboso = await readFile(new URL("proyectos/toboso-madrid/index.html", root), "utf8");
+  assert.match(toboso, />Acceso en (?:<!-- -->)?Civislend(?:<!-- -->)? ↗<\/a>/);
+  assert.match(toboso, />Ver fuente ↗<\/a>/);
+  assert.doesNotMatch(toboso, /Acceso en wecity/);
+
+  const madrid = await readFile(new URL("proyectos/madrid-atlas-nuevo-ahijones/index.html", root), "utf8");
+  assert.match(madrid, />Acceso en (?:<!-- -->)?wecity(?:<!-- -->)? ↗<\/a>/);
 });

@@ -46,6 +46,18 @@ function decodeBase64(raw: string) {
   return bytes;
 }
 
+function platformLabel(url: string) {
+  try {
+    const hostname = new URL(url).hostname;
+    if (hostname.includes("civislend.com")) return "Civislend";
+    if (hostname.includes("urbanitae.com") || hostname.includes("urbanitae-prod-static-content")) return "Urbanitae";
+    if (hostname.includes("wecity.com")) return "wecity";
+  } catch {
+    // The URL is also validated by the browser when the link is opened.
+  }
+  return "la plataforma";
+}
+
 async function fetchWecityDocument(url: string) {
   const payload = await new Promise<WecityDocumentPayload>((resolve, reject) => {
     const request = new XMLHttpRequest();
@@ -101,6 +113,8 @@ export function OfficialDocumentActions({
   const [notice, setNotice] = useState<string | null>(null);
 
   if (restricted) {
+    const destination = accessUrl ?? url;
+    const provider = platformLabel(destination);
     return (
       <div
         className={`official-document-actions${compact ? " official-document-actions-compact" : ""}`}
@@ -108,8 +122,23 @@ export function OfficialDocumentActions({
         data-document-access="restricted"
       >
         <div>
-          <a href={accessUrl ?? url} target="_blank" rel="noreferrer" aria-label={`Acceso en wecity: ${label}`}>
-            Acceso en wecity ↗
+          <a href={destination} target="_blank" rel="noreferrer" aria-label={`Acceso en ${provider}: ${label}`}>
+            Acceso en {provider} ↗
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isEncodedWecityDocumentUrl(url)) {
+    return (
+      <div
+        className={`official-document-actions${compact ? " official-document-actions-compact" : ""}`}
+        data-official-document-url={url}
+      >
+        <div>
+          <a href={url} target="_blank" rel="noreferrer" aria-label={`Ver fuente oficial: ${label}`}>
+            Ver fuente ↗
           </a>
         </div>
       </div>

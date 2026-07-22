@@ -188,6 +188,62 @@ export const projects: Project[] = [
         "Se anuncia una aportación total de 868.059 €, aunque sólo 323.610 € aparecen previstos en la firma y no se ve un calendario vinculante para el resto.",
       caveat:
         "Promotor y constructor son partes relacionadas. Conviene exigir certificación independiente, control de precios intragrupo y trazabilidad de cualquier desviación.",
+      summary: [
+        { label: "Sociedad", value: "Promonagon, S.L.", note: "CIF B87093720 · antigüedad no localizada" },
+        { label: "Patrimonio neto", value: "No localizado", note: "Sin cuentas completas accesibles en el expediente" },
+        { label: "Liquidez", value: "No localizada", note: "Sin caja ni activo corriente acreditados" },
+        { label: "Equity declarado", value: "868.059 €", note: "323.610 € previstos en la firma" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro", status: "Parcial",
+          summary: "La prestataria es Proyectos y Soluciones Promonagon, S.L. (B87093720), presentada como parte de Grupo Index. No constan en los archivos revisados administradores, beneficiario último ni el perímetro completo de garantes y vinculadas.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/963" }],
+        },
+        {
+          label: "Presencia real", status: "Parcial",
+          summary: "Civislend identifica domicilio en Madrid y pertenencia a Grupo Index. La coincidencia entre web corporativa, aviso legal y prestataria no queda acreditada en la documentación accesible.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Dossier del promotor", url: "https://www.civislend.com/document/254955", access: "restricted" }],
+        },
+        {
+          label: "Experiencia comparable", status: "Declarado",
+          summary: "La plataforma atribuye al grupo más de 2.000 viviendas entregadas en Madrid, sin relación verificable de promociones comparables con sociedad responsable, costes, plazos y salida final.",
+          asOf: "Declaración de Civislend",
+          sources: [{ label: "Dossier del promotor", url: "https://www.civislend.com/document/254955", access: "restricted" }],
+        },
+        {
+          label: "Historial en plataformas", status: "No localizado",
+          summary: "No se ha localizado un historial proyecto a proyecto de préstamos anteriores de la prestataria con fechas de devolución, retrasos y rentabilidad final.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://www.civislend.com/document/255534", access: "restricted" }],
+        },
+        {
+          label: "Cuentas depositadas", status: "No localizado",
+          summary: "No se han localizado cuentas anuales completas depositadas, fecha de depósito, auditoría ni salvedades de la prestataria dentro del expediente revisado.",
+          asOf: "Último ejercicio no acreditado",
+          sources: [{ label: "Informe de riesgos", url: "https://www.civislend.com/document/255540", access: "restricted" }],
+        },
+        {
+          label: "Solvencia y liquidez", status: "No localizado",
+          summary: "No constan caja, activo corriente, pasivo corriente, deuda financiera, patrimonio, ingresos ni resultados suficientes para medir liquidez o capacidad de absorber sobrecostes.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Informe de riesgos", url: "https://www.civislend.com/document/255540", access: "restricted" }],
+        },
+        {
+          label: "Incidencias", status: "Parcial",
+          summary: "No se han acreditado concursos, sanciones, litigios o deudas públicas; esa ausencia documental no demuestra que no existan. Sí hay riesgo de operaciones vinculadas entre promotor y constructor.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/963" }],
+        },
+        {
+          label: "Alineación económica", status: "Parcial",
+          summary: "Se declaran 868.059 € de fondos propios, pero sólo 323.610 € se sitúan en la firma; falta acreditar desembolso, origen, subordinación y calendario vinculante del resto. Además, 200.000 € de deuda liberan capital previo.",
+          asOf: "Estructura publicada",
+          sources: [{ label: "Estudio económico", url: "https://www.civislend.com/document/255552", access: "restricted" }],
+        },
+      ],
     },
     deficiencies: [
       {
@@ -369,6 +425,62 @@ export const projects: Project[] = [
         "Se publican 1.548.130 € de aportación del promotor, equivalentes aproximadamente al 37% del coste total del estudio económico.",
       caveat:
         "En 2024 declaró 6,335 M€ de activos, 498.916 € de patrimonio neto y 5,765 M€ de pasivo no corriente. El patrimonio supone un 7,9% de los activos y la deuda no corriente equivale a 11,6 veces el patrimonio.",
+      summary: [
+        { label: "Constitución", value: "4 feb 1983", note: "Antigüedad societaria acreditada en el expediente" },
+        { label: "Patrimonio neto 2024", value: "498.916 €", note: "7,9% del activo total" },
+        { label: "Resultado neto 2024", value: "48.658 €", note: "Tras resultado financiero de −306.674 €" },
+        { label: "Equity declarado", value: "1.548.130 €", note: "Aproximadamente 37% del coste publicado" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro", status: "Verificado",
+          summary: "DANEPI, S.A. (A08803108) figura como prestataria y garante. La sociedad se constituyó el 4 de febrero de 1983; el expediente identifica su actividad, aunque no desarrolla beneficiario último y todas las vinculadas.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://www.civislend.com/document/255531", access: "restricted" }],
+        },
+        {
+          label: "Presencia real", status: "Parcial",
+          summary: "La plataforma describe actividad inmobiliaria, hotelera y sociosanitaria en Cataluña. No se ha verificado en los archivos una web corporativa con aviso legal coincidente y cartera operativa actualizada.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Trayectoria del promotor", url: "https://www.civislend.com/document/255288", access: "restricted" }],
+        },
+        {
+          label: "Experiencia comparable", status: "Declarado",
+          summary: "Se declaran más de treinta años de experiencia, pero el material de trayectoria no prueba proyecto a proyecto costes, plazos, ventas y resultados finales comparables.",
+          asOf: "Declaración de Civislend",
+          sources: [{ label: "Trayectoria del promotor", url: "https://www.civislend.com/document/255288", access: "restricted" }],
+        },
+        {
+          label: "Historial en plataformas", status: "No localizado",
+          summary: "No se ha localizado una relación completa de operaciones anteriores de DANEPI en financiación participativa con devolución, retrasos y rentabilidad final.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/966" }],
+        },
+        {
+          label: "Cuentas depositadas", status: "Parcial",
+          summary: "El expediente ofrece cifras financieras de 2024, pero no se han localizado las cuentas anuales completas depositadas, su fecha de depósito, auditoría o posibles salvedades.",
+          asOf: "Ejercicio 2024",
+          sources: [{ label: "Informe de riesgos", url: "https://www.civislend.com/document/255300", access: "restricted" }],
+        },
+        {
+          label: "Solvencia y liquidez", status: "Parcial",
+          summary: "Activo 6.335.495 €, patrimonio 498.916 €, pasivo no corriente 5.764.984 €, pasivo corriente 71.595 € y beneficio neto 48.658 €. El patrimonio es 7,9% del activo y el pasivo no corriente equivale a 11,6 veces el patrimonio; no consta caja separada.",
+          asOf: "31 dic 2024",
+          sources: [{ label: "Informe de riesgos", url: "https://www.civislend.com/document/255300", access: "restricted" }],
+        },
+        {
+          label: "Incidencias", status: "Parcial",
+          summary: "No se han localizado en el expediente concursos, sanciones o litigios acreditados. Sí constan elevada deuda no corriente y una hipoteca previa que debe cancelarse simultáneamente.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Información registral", url: "https://www.civislend.com/document/255309", access: "restricted" }],
+        },
+        {
+          label: "Alineación económica", status: "Parcial",
+          summary: "Se declaran 1.548.130 € aportados, pero debe probarse su desembolso, permanencia y subordinación. La primera disposición de 1,20 M€ refinancia deuda existente y no obra futura.",
+          asOf: "Estructura publicada",
+          sources: [{ label: "Estudio económico", url: "https://www.civislend.com/document/255282", access: "restricted" }],
+        },
+      ],
     },
     deficiencies: [
       {
@@ -552,6 +664,62 @@ export const projects: Project[] = [
         "Aporta 796.546 €, pero la deuda representa el 75% del coste total y el segundo tramo debe quedar subordinado a la aportación efectiva del capital propio.",
       caveat:
         "Es su segundo préstamo en Civislend. La primera operación, de septiembre de 2025, se describe como en plazo, pero aún no ofrece un ciclo completo de construcción, explotación y reembolso.",
+      summary: [
+        { label: "Grupo", value: "Greenfo · desde 2022", note: "Antigüedad declarada por el promotor" },
+        { label: "Patrimonio neto", value: "No localizado", note: "Sin cuentas completas accesibles" },
+        { label: "Liquidez", value: "No localizada", note: "Sin caja ni deuda financiera acreditadas" },
+        { label: "Equity declarado", value: "796.546 €", note: "25% de las necesidades publicadas" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro", status: "Parcial",
+          summary: "La prestataria es Suites Alicante Plaza, S.L. (B70856042), vinculada al grupo Greenfo. No constan en abierto administradores, beneficiario último, garantes y mapa completo de vinculadas.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/978" }],
+        },
+        {
+          label: "Presencia real", status: "Parcial",
+          summary: "Greenfo mantiene web corporativa y publica una cartera de proyectos, pero la evidencia revisada no prueba que la sociedad vehículo tenga estructura operativa propia ni activos turísticos estabilizados.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Web corporativa Greenfo", url: "https://greenfo.es/infraestructuras-sostenibles/" }],
+        },
+        {
+          label: "Experiencia comparable", status: "Declarado",
+          summary: "El grupo publica tres edificios turísticos en Alicante y dos villas en Altea, todos como desarrollos. No se han acreditado entregas y explotación estabilizada comparables.",
+          asOf: "Web corporativa consultada",
+          sources: [{ label: "Cartera Greenfo", url: "https://greenfo.es/infraestructuras-sostenibles/" }],
+        },
+        {
+          label: "Historial en plataformas", status: "Parcial",
+          summary: "Civislend lo presenta como segundo préstamo del promotor y declara que el primero, formalizado en septiembre de 2025, avanza según plan; todavía no acredita un ciclo completo de reembolso.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://www.civislend.com/document/255237", access: "restricted" }],
+        },
+        {
+          label: "Cuentas depositadas", status: "No localizado",
+          summary: "No se han localizado cuentas anuales completas depositadas, fecha de depósito, auditoría ni salvedades de la prestataria o del grupo.",
+          asOf: "Último ejercicio no acreditado",
+          sources: [{ label: "Informe de riesgos", url: "https://www.civislend.com/document/255240", access: "restricted" }],
+        },
+        {
+          label: "Solvencia y liquidez", status: "No localizado",
+          summary: "No constan caja, activo corriente, pasivo corriente, deuda, patrimonio, ingresos ni resultados que permitan calcular liquidez o capacidad para cubrir sobrecostes.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Informe de riesgos", url: "https://www.civislend.com/document/255240", access: "restricted" }],
+        },
+        {
+          label: "Incidencias", status: "Parcial",
+          summary: "No se han localizado incidencias societarias acreditadas. El riesgo material identificado es regulatorio y operativo: licencia de obras no equivale a habilitación turística completa.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/978" }],
+        },
+        {
+          label: "Alineación económica", status: "Parcial",
+          summary: "Se declaran 796.546 € de fondos propios, el 25% de las necesidades. Falta acreditar desembolso previo, origen, subordinación y permanencia antes del segundo tramo de deuda.",
+          asOf: "Estructura publicada",
+          sources: [{ label: "Estudio económico", url: "https://www.civislend.com/document/255234", access: "restricted" }],
+        },
+      ],
     },
     deficiencies: [
       {
@@ -758,6 +926,62 @@ export const projects: Project[] = [
         "El plan atribuye 3,70 M€ de capital propio, aunque 750.000 € se destinan a una recapitalización o add-on inicial y deben explicarse con precisión.",
       caveat:
         "Faltan estados financieros consolidados, detalle del beneficiario último y prueba líquida de la capacidad para cubrir sobrecostes hasta la venta.",
+      summary: [
+        { label: "Experiencia", value: "+40 años", note: "Atribuida por Urbanitae a la familia promotora" },
+        { label: "Patrimonio neto", value: "No localizado", note: "Sin cuentas completas de la prestataria" },
+        { label: "Liquidez", value: "No localizada", note: "Sin caja disponible acreditada" },
+        { label: "Equity declarado", value: "3.700.747 €", note: "25% del coste antes de intereses" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro", status: "Parcial",
+          summary: "Phuket Properties, S.L. es la prestataria y propietaria de la villa. No se acredita en los documentos públicos revisados el beneficiario último ni el perímetro consolidado de promotor, garantes y vinculadas.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Ficha_de_datos_de_inversin.pdf" }],
+        },
+        {
+          label: "Presencia real", status: "Parcial",
+          summary: "Urbanitae presenta una familia promotora especializada en vivienda ultra-prime, pero no se ha localizado una web corporativa inequívoca con aviso legal coincidente con la prestataria.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Presentación oficial", url: "https://blog.urbanitae.com/2026/07/17/vivaldi-ii-deuda-al-1025-anual-para-una-villa-ultra-prime-en-sierra-blanca/" }],
+        },
+        {
+          label: "Experiencia comparable", status: "Declarado",
+          summary: "Urbanitae atribuye más de cuarenta años de experiencia en vivienda de lujo, sin inventario verificable de operaciones comparables con precio, plazo y retorno final.",
+          asOf: "Declaración de Urbanitae",
+          sources: [{ label: "Presentación oficial", url: "https://blog.urbanitae.com/2026/07/17/vivaldi-ii-deuda-al-1025-anual-para-una-villa-ultra-prime-en-sierra-blanca/" }],
+        },
+        {
+          label: "Historial en plataformas", status: "No localizado",
+          summary: "No se ha localizado historial proyecto a proyecto de la prestataria en plataformas con fechas de devolución, retrasos, pérdidas y rentabilidad final.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Ficha_de_datos_de_inversin.pdf" }],
+        },
+        {
+          label: "Cuentas depositadas", status: "No localizado",
+          summary: "No se han localizado cuentas anuales completas depositadas, fecha de depósito, auditoría o salvedades de Phuket Properties, S.L.",
+          asOf: "Último ejercicio no acreditado",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Ficha_de_datos_de_inversin.pdf" }],
+        },
+        {
+          label: "Solvencia y liquidez", status: "No localizado",
+          summary: "No constan caja, activo corriente, pasivo corriente, deuda financiera, patrimonio, ingresos ni resultados suficientes para medir la capacidad de cubrir sobrecostes hasta la venta.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Resumen económico", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Resumen_econmico.pdf" }],
+        },
+        {
+          label: "Incidencias", status: "Parcial",
+          summary: "No se han localizado incidencias societarias acreditadas. El expediente sí muestra presupuestos no firmados y registro y Catastro aún referidos a la vivienda demolida.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Tasación TASA", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/Tasacin.pdf" }],
+        },
+        {
+          label: "Alineación económica", status: "Parcial",
+          summary: "El plan declara 3.700.747 € de capital propio, pero debe conciliarse la recapitalización inicial de 750.000 € y acreditarse desembolso, subordinación y permanencia hasta la venta.",
+          asOf: "Estructura publicada",
+          sources: [{ label: "Resumen económico", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000499/public-document/es_ES/Resumen_econmico.pdf" }],
+        },
+      ],
     },
     deficiencies: [
       {
@@ -912,6 +1136,62 @@ export const projects: Project[] = [
         "Gestor y promotor aportan 381.000–381.300 €, aproximadamente el 30% del equity, por detrás de la preferencia inicial del inversor según el waterfall publicado.",
       caveat:
         "La falta de cuentas financieras, garantía real y compromiso bancario reduce la capacidad de verificar solvencia y financiación completa del desarrollo.",
+      summary: [
+        { label: "Vehículo", value: "Atlas Opportunities 3", note: "Sociedad proyecto identificada" },
+        { label: "Patrimonio neto", value: "No localizado", note: "Sin cuentas completas accesibles" },
+        { label: "Liquidez", value: "No localizada", note: "Sin caja ni deuda financiera acreditadas" },
+        { label: "Equity promotor", value: "381.000–381.300 €", note: "30% del equity total publicado" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro", status: "Parcial",
+          summary: "La inversión se articula en Atlas Opportunities 3, S.L.; se identifica a Inversiones Blasiam, S.L. como promotor y a AJP Tax Legal como gestor. No consta el beneficiario último ni el mapa completo de vinculadas.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Ficha_Datos_Fundamentales_para_la_Inversin.pdf" }],
+        },
+        {
+          label: "Presencia real", status: "No localizado",
+          summary: "No se ha localizado en las fuentes oficiales revisadas una web corporativa inequívoca con aviso legal, equipo y cartera coincidentes con promotor y vehículo.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Ficha_Datos_Fundamentales_para_la_Inversin.pdf" }],
+        },
+        {
+          label: "Experiencia comparable", status: "No localizado",
+          summary: "La documentación identifica a las sociedades, pero no acredita promociones comparables terminadas con coste, plazo, precio de salida y resultado final.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Ficha_Datos_Fundamentales_para_la_Inversin.pdf" }],
+        },
+        {
+          label: "Historial en plataformas", status: "No localizado",
+          summary: "No se ha localizado historial proyecto a proyecto del promotor o vehículo con devoluciones, retrasos, pérdidas y rentabilidad final.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Urbanitae", url: "https://urbanitae.com/es/" }],
+        },
+        {
+          label: "Cuentas depositadas", status: "No localizado",
+          summary: "No se han localizado cuentas anuales completas depositadas, fechas de depósito, auditoría o salvedades de vehículo, promotor o gestor.",
+          asOf: "Último ejercicio no acreditado",
+          sources: [{ label: "Ficha de datos fundamentales", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Ficha_Datos_Fundamentales_para_la_Inversin.pdf" }],
+        },
+        {
+          label: "Solvencia y liquidez", status: "No localizado",
+          summary: "No constan caja, activo y pasivo corrientes, deuda, patrimonio, ingresos o resultados suficientes para medir liquidez y capacidad de completar el proyecto.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Resumen económico", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Resumen_econmico.pdf" }],
+        },
+        {
+          label: "Incidencias", status: "Parcial",
+          summary: "No se han localizado incidencias societarias acreditadas. El expediente presenta nota simple antigua, licencia no localizada y financiación bancaria todavía no comprometida.",
+          asOf: "Corte 20 jul 2026",
+          sources: [{ label: "Nota simple", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/Nota_Simple_Registral.pdf" }],
+        },
+        {
+          label: "Alineación económica", status: "Parcial",
+          summary: "Promotor y gestor aportan 381.000–381.300 €, el 30% del equity. Falta acreditar desembolso, permanencia y capacidad para cubrir pérdidas por encima de esa aportación.",
+          asOf: "Estructura publicada",
+          sources: [{ label: "Resumen económico", url: "https://s3-eu-west-1.amazonaws.com/urbanitae-prod-static-content/project/P000498/public-document/es_ES/Resumen_econmico.pdf" }],
+        },
+      ],
     },
     deficiencies: [
       {
@@ -1104,7 +1384,7 @@ export const projects: Project[] = [
           ],
         },
         {
-          label: "Experiencia",
+          label: "Experiencia comparable",
           status: "Declarado",
           summary:
             "El dossier atribuye a Coóptima más de 25 años en residencial y cooperativas. No aporta una relación normalizada de promociones con inversión, plazo, desviación, entrega y resultado final.",
@@ -1392,7 +1672,7 @@ export const projects: Project[] = [
           ],
         },
         {
-          label: "Experiencia",
+          label: "Experiencia comparable",
           status: "Declarado",
           summary:
             "La plataforma atribuye ocho proyectos residenciales desde 2017 en La Quinta, La Arquería, Nueva Atalaya y El Paraíso, sin resultados normalizados por promoción.",
