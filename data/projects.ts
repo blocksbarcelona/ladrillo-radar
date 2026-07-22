@@ -6,8 +6,8 @@ export type DocumentStatus =
   | "Acceso restringido"
   | "No localizado";
 
-export const SNAPSHOT_DATE = "2026-07-21";
-export const SNAPSHOT_LABEL = "21 JUL 2026";
+export const SNAPSHOT_DATE = "2026-07-22";
+export const SNAPSHOT_LABEL = "22 JUL 2026";
 
 export const platformMeta: Record<
   Platform,
@@ -1166,6 +1166,232 @@ export const projects: Project[] = [
         url: "https://www.boe.es/buscar/act.php?id=BOE-A-1997-16469",
         type: "Normativa",
         note: "Marco registral de afecciones y actos urbanísticos.",
+      },
+      {
+        label: "CNMV · registro de wecity",
+        url: "https://www.cnmv.es/portal/consultas/servicios-financiacion-participativa/proveedor?lang=es&nif=B88317003&nreg=9",
+        type: "Corporativa",
+        note: "Ficha registral del proveedor de servicios de financiación participativa.",
+      },
+    ],
+  },
+  {
+    id: "malaga-benahavis",
+    platform: "wecity",
+    name: "Málaga Benahavís",
+    location: "El Paraíso · Benahavís · Málaga",
+    date: {
+      isoDateTime: "2026-07-24T12:00:00+02:00",
+      label: "24 jul 2026 · 12:00 CEST",
+      type: "Apertura",
+      note: "Fecha y hora verificadas en la oportunidad oficial de wecity y en la marca temporal 1784887200 de su API.",
+    },
+    status: "Próxima apertura",
+    score: 5.5,
+    risk: "Medio-alto",
+    returnLabel: "10,50% anual · 10,50% total",
+    term: "12 meses · +6 de prórroga",
+    size: "1,00 M€ · primera disposición 500.524 €",
+    ltv: "29,21% HET · 68,87% sobre valor actual",
+    guarantee: "Hipoteca 1er rango · sin garantía personal",
+    promoter: "754.129,13 € · 42,99% declarado",
+    progress: "37,46% certificado · febrero de 2026",
+    exit: "Venta de una única villa · sin comercialización",
+    verdict:
+      "Esperar. La cobertura hipotecaria y el equity son atractivos, pero deben corregirse el rating y la falta de alineación entre los planos ejecutados y el proyecto básico licenciado, además de actualizar el avance y acreditar la salida comercial.",
+    strengths: [
+      "Hipoteca de primer rango condicionada a otorgamiento en unidad de acto y nota simple sin hipoteca previa.",
+      "LTV HET del 29,21% y LTC calculado del 57,01% sobre las necesidades del dossier.",
+      "Aportación propia declarada de 754.129,13 €, equivalente al 42,99% del coste publicado.",
+      "Fondos en escrow y liberación parcial sujeta a una entidad verificadora externa.",
+    ],
+    watch: [
+      "La tasación advierte que los planos de ejecución difieren del proyecto básico licenciado y no existe un básico modificado.",
+      "La salida depende de vender una sola vivienda de lujo; no hay reserva, preventa ni comercialización iniciada.",
+      "El rating contiene errores de interés, precio, precio por m² y nombre de la sociedad analizada.",
+      "La última visita técnica es de febrero de 2026, cinco meses antes de la apertura.",
+    ],
+    facts: [
+      { label: "Activo", value: "Villa unifamiliar · 4 dormitorios · 5 baños · piscina" },
+      { label: "Prestataria", value: "ALQAVIA COSTA S.L. · CIF B93426567" },
+      { label: "Finca", value: "1178 Benahavís · CRU 29042000097074" },
+      { label: "Superficie", value: "404,21 m² construidos · parcela catastral 1.456 m²" },
+      { label: "Parcela registral", value: "1.935 m²", note: "La finca no está coordinada gráficamente con Catastro." },
+      { label: "Préstamo", value: "1.000.000 €" },
+      { label: "Primera disposición", value: "500.524,17 €" },
+      { label: "Valor actual", value: "1.452.116,34 € · Alia · 14 feb 2026" },
+      { label: "HET", value: "3.423.250,45 €" },
+      { label: "LTV 1ª disposición", value: "34,47% calculado" },
+      { label: "LTV total actual", value: "68,87% calculado" },
+      { label: "LTV HET", value: "29,21% calculado" },
+      { label: "LTC", value: "57,01% sobre 1.754.129,13 €" },
+      { label: "Equity", value: "754.129,13 € · 42,99% declarado como desembolsado" },
+      { label: "Licencia", value: "Concedida 24 oct 2024 · expediente 291/2024" },
+      { label: "Avance", value: "37,460% · visita 12 feb 2026" },
+      { label: "Precio de salida", value: "2.850.000 € en plan de negocio" },
+      { label: "Comercialización", value: "No iniciada · 0 de 1" },
+      { label: "Pago", value: "Bullet · intereses a vencimiento · mínimo 6 meses" },
+      { label: "Entrada mínima", value: "500 €" },
+      {
+        label: "Puntuación por bloques",
+        value: "8,0 · 7,0 · 5,0 · 3,5 · 4,5 · 5,0 · 3,0 · 6,5",
+        note: "Garantía, apalancamiento, técnico, salida, promotor, jurídico, coherencia y términos; total ponderado 5,50.",
+      },
+    ],
+    company: {
+      publicName: "ALQAVIA COSTA",
+      legalName: "ALQAVIA COSTA S.L. · CIF B93426567",
+      identity:
+        "Promotora y prestataria constituida en 2015, con domicilio publicado en Marbella. El contrato identifica como representante a D. Pawel-Maciej Czuraj.",
+      profile:
+        "Promoción y rehabilitación de viviendas unifamiliares de alta gama en Benahavís, según la plataforma.",
+      trackRecord:
+        "Declara ocho proyectos residenciales desde 2017 en La Quinta, La Arquería, Nueva Atalaya y El Paraíso, sin relación auditada de costes, plazos, ventas y resultados.",
+      alignment:
+        "La plataforma declara 754.129,13 € ya aportados a adquisición y obra; representan el 42,99% de las necesidades del dossier.",
+      caveat:
+        "El rating muestra una pérdida neta de 36.106,73 € en 2025 y puntúa con CC la evolución, endeudamiento y ROA; además menciona por error a otra sociedad en la conclusión del promotor.",
+    },
+    deficiencies: [
+      {
+        severity: "Crítica",
+        title: "Planos ejecutados no alineados con la licencia",
+        detail:
+          "La tasación advierte que los planos del proyecto de ejecución difieren del proyecto básico con el que se obtuvo la licencia y que no existe un básico modificado.",
+        impact:
+          "La licencia exige notificar las variaciones y obtener conformidad previa; una desviación no legalizada puede afectar obra, primera ocupación, venta y valor de la garantía.",
+        verify:
+          "Aprobación municipal del modificado o certificado jurídico y técnico que confirme que la ejecución actual está íntegramente amparada.",
+      },
+      {
+        severity: "Crítica",
+        title: "Rating con errores materiales",
+        detail:
+          "El informe usa 11% frente al 10,50% contractual, dos precios de venta, un €/m² que no cuadra y menciona a Impulsa Proyectos Inmobiliarios S.L.",
+        impact:
+          "La calificación AA no es una base fiable mientras sus entradas, cálculos y obligado analizado no estén conciliados.",
+        verify:
+          "Retirada o reemisión del rating para ALQAVIA COSTA S.L. con contrato, precio, fuentes y usos y cálculos correctos.",
+      },
+      {
+        severity: "Alta",
+        title: "Salida concentrada y sin preventas",
+        detail:
+          "El repago depende de vender una única villa y la plataforma confirma que la comercialización no ha comenzado.",
+        impact:
+          "Un retraso o descuento de un solo comprador puede consumir el plazo y exigir prórroga o ejecución.",
+        verify:
+          "Plan de comercialización, comparables de ventas cerradas, valoración comercial independiente y evidencia de demanda.",
+      },
+      {
+        severity: "Alta",
+        title: "Avance y coste pendiente desactualizados",
+        detail:
+          "El 37,46% procede de una visita del 12 de febrero de 2026; no hay certificación pública de julio ni contingencia explícita.",
+        impact:
+          "No se puede medir con precisión el coste a terminación ni la suficiencia de los 893.983 € previstos para obra.",
+        verify:
+          "Certificación actual, presupuesto pendiente, contrato de obra, contingencia y responsable de desviaciones.",
+      },
+      {
+        severity: "Alta",
+        title: "Registro y Catastro no coordinados",
+        detail:
+          "La nota simple describe 1.935 m², Catastro y proyecto usan 1.456 m² y la finca sigue descrita como solar sin declaración de obra nueva.",
+        impact:
+          "La discrepancia puede complicar obra nueva, primera ocupación, compraventa e inscripción de la garantía.",
+        verify:
+          "Informe técnico-jurídico de correspondencia, georreferenciación y calendario de declaración de obra nueva.",
+      },
+      {
+        severity: "Media",
+        title: "Track record no verificable",
+        detail:
+          "Se declaran ocho proyectos previos, pero no se aportan resultados normalizados ni cuentas completas de 2025.",
+        impact:
+          "La experiencia comparable y la capacidad para absorber sobrecostes no quedan suficientemente demostradas.",
+        verify:
+          "Listado de proyectos con inversión, plazo, precio de venta, desviación y resultado, más cuentas depositadas completas.",
+      },
+    ],
+    inconsistencies: [
+      {
+        title: "Interés del préstamo",
+        published: "10,50% en web, dossier y contrato; 11% en el rating.",
+        calculation: "Diferencia = 0,50 puntos porcentuales",
+        reading: "Prevalece el 10,50% contractual; el rating debe corregirse.",
+      },
+      {
+        title: "Precio de venta y precio por m²",
+        published: "2.850.000 € en el plan; 3.000.000 € y 7.246 €/m² en otra sección del rating.",
+        calculation: "2.850.000 / 404,21 = 7.051 €/m²; 3.000.000 / 404,21 = 7.422 €/m²",
+        reading: "Ninguna base produce los 7.246 €/m² publicados.",
+      },
+      {
+        title: "Sociedad analizada en el rating",
+        published: "La operación es de ALQAVIA COSTA S.L., pero la conclusión cita a Impulsa Proyectos Inmobiliarios S.L.",
+        calculation: "Sociedades distintas",
+        reading: "La calificación del promotor queda cuestionada por un probable error de plantilla.",
+      },
+      {
+        title: "Fondos destinados a obra",
+        published: "893.713 € en el texto del dossier y 893.983 € en su tabla.",
+        calculation: "Diferencia = 270 €",
+        reading: "El importe es pequeño, pero confirma que fuentes y usos no han sido revisados de forma uniforme.",
+      },
+      {
+        title: "Superficie de parcela",
+        published: "1.935 m² en Registro; 1.456 m² en Catastro y proyecto.",
+        calculation: "Diferencia = 479 m²",
+        reading: "La tasación identifica el activo, pero recomienda corregir la descripción y confirma que no hay coordinación catastral.",
+      },
+    ],
+    documents: [
+      { name: "Dossier inmueble ES", status: "Disponible en la plataforma", note: "Descripción, fuentes y usos, avance y salida.", url: "https://api.wecity.com/opportunities/252/doc?file=101" },
+      { name: "Planos", status: "Disponible en la plataforma", note: "Planos de la vivienda; deben conciliarse con el proyecto básico licenciado.", url: "https://api.wecity.com/opportunities/252/doc?file=103" },
+      { name: "Referencia catastral", status: "Disponible en la plataforma", note: "Parcela urbana de 1.456 m², sin edificación catastrada.", url: "https://api.wecity.com/opportunities/252/doc?file=104" },
+      { name: "Nota simple · 6 feb 2026", status: "Disponible en la plataforma", note: "Finca 1178, dominio completo, servidumbre y afección fiscal.", url: "https://api.wecity.com/opportunities/252/doc?file=107" },
+      { name: "Tasación Alia · 14 feb 2026", status: "Disponible en la plataforma", note: "Valor actual 1.452.116,34 € y HET 3.423.250,45 €; incluye la licencia.", url: "https://api.wecity.com/opportunities/252/doc?file=110" },
+      { name: "Rating Moore · 16 jul 2026", status: "Disponible en la plataforma", note: "Calificación AA con errores materiales pendientes de corrección.", url: "https://api.wecity.com/opportunities/252/doc?file=133" },
+      { name: "Contrato de préstamo", status: "Disponible en la plataforma", note: "1 M€, 10,50%, 12+6 meses, bullet e hipoteca de primer rango.", url: "https://api.wecity.com/opportunities/252/doc?file=204" },
+      { name: "Mandato Agente de Garantías", status: "Disponible en la plataforma", note: "Designa a Global Security Partners, S.L.U.", url: "https://api.wecity.com/opportunities/252/doc?file=205" },
+      { name: "Mandato wecity", status: "Disponible en la plataforma", note: "Regula representación, seguimiento y actuaciones ante impago.", url: "https://api.wecity.com/opportunities/252/doc?file=206" },
+    ],
+    questions: [
+      "¿Ha aprobado el Ayuntamiento los planos de ejecución distintos del proyecto básico?",
+      "¿Cuál es el avance y coste pendiente certificados en julio de 2026?",
+      "¿Quién cubre los sobrecostes y qué contingencia queda disponible?",
+      "¿Cuál es el precio de venta válido: 2,85 M€ o 3,00 M€?",
+      "¿Por qué el rating usa 11% y menciona a Impulsa Proyectos Inmobiliarios S.L.?",
+      "¿Cómo se concilian los distintos costes y los 893.713/893.983 € destinados a obra?",
+      "¿Qué ventas cerradas sustentan el precio de salida?",
+      "¿Qué resultados verificables tuvieron los ocho proyectos anteriores?",
+      "¿Cuándo se declarará la obra nueva y se coordinarán Registro y Catastro?",
+    ],
+    sources: [
+      {
+        label: "wecity · Málaga Benahavís",
+        url: "https://www.wecity.com/oportunidades/malaga-benahavis/",
+        type: "Primaria",
+        note: "Página oficial de la oportunidad, condiciones, activo, garantía, promotor y salida.",
+      },
+      {
+        label: "wecity API · oportunidad 252",
+        url: "https://api.wecity.com/opportunities/252",
+        type: "Primaria",
+        note: "Identificador, estado, marca temporal exacta y catálogo documental oficial.",
+      },
+      {
+        label: "Contrato de préstamo · wecity",
+        url: "https://api.wecity.com/opportunities/252/doc?file=204",
+        type: "Primaria",
+        note: "Condiciones particulares, garantía, escrow, vencimiento y obligaciones de la promotora.",
+      },
+      {
+        label: "Tasación Alia · wecity",
+        url: "https://api.wecity.com/opportunities/252/doc?file=110",
+        type: "Primaria",
+        note: "Valoración ECO, avance, nota simple utilizada, licencia anexada y advertencias técnicas.",
       },
       {
         label: "CNMV · registro de wecity",

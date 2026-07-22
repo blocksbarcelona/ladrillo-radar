@@ -43,12 +43,14 @@ test("exports the complete static radar", async () => {
   assert.match(html, /Vivaldi II/);
   assert.match(html, /Residencial Altay/);
   assert.match(html, /Madrid Atlas Nuevo Ahijones/);
+  assert.match(html, /Málaga Benahavís/);
   assert.match(html, /proyectos\/residencial-mas-marti\//);
   assert.match(html, /proyectos\/vivaldi-ii\//);
   assert.match(html, /proyectos\/residencial-altay\//);
   assert.match(html, /proyectos\/madrid-atlas-nuevo-ahijones\//);
+  assert.match(html, /proyectos\/malaga-benahavis\//);
   const projectCardLinks = [...html.matchAll(/<a class="project-card-link" href="proyectos\/([^\"]+)\/"/g)];
-  assert.equal(projectCardLinks.length, 6);
+  assert.equal(projectCardLinks.length, 7);
   assert.doesNotMatch(html, /<a class="detail-link"/);
   assert.match(html, /6,5, escala de 0 a 10/);
   assert.match(html, /7,1, escala de 0 a 10/);
@@ -130,6 +132,7 @@ for (const id of [
   "vivaldi-ii",
   "residencial-altay",
   "madrid-atlas-nuevo-ahijones",
+  "malaga-benahavis",
 ]) {
   test(`exports the complete detail page for ${id}`, async () => {
     const html = await readFile(new URL(`proyectos/${id}/index.html`, root), "utf8");
