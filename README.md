@@ -2,8 +2,8 @@
 
 Publicación: `https://radar.uberleap.com` mediante GitHub Pages.
 
-Web editorial 100% estática construida con seis auditorías locales de Civislend,
-Urbanitae y wecity. El corte del 21 de julio de 2026 separa proyectos actuales y
+Web editorial 100% estática construida con ocho auditorías locales de Civislend,
+Urbanitae y wecity. El corte del 23 de julio de 2026 separa proyectos actuales y
 pasados, permite ordenar por fecha o puntuación y genera una ficha detallada por
 proyecto.
 

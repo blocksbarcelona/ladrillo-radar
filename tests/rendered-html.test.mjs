@@ -42,15 +42,17 @@ test("exports the complete static radar", async () => {
   assert.match(html, /Toboso Madrid/);
   assert.match(html, /Vivaldi II/);
   assert.match(html, /Residencial Altay/);
+  assert.match(html, /Valencia I · Proyecto Mirador Sur/);
   assert.match(html, /Madrid Atlas Nuevo Ahijones/);
   assert.match(html, /Málaga Benahavís/);
   assert.match(html, /proyectos\/residencial-mas-marti\//);
   assert.match(html, /proyectos\/vivaldi-ii\//);
   assert.match(html, /proyectos\/residencial-altay\//);
+  assert.match(html, /proyectos\/valencia-mirador-sur\//);
   assert.match(html, /proyectos\/madrid-atlas-nuevo-ahijones\//);
   assert.match(html, /proyectos\/malaga-benahavis\//);
   const projectCardLinks = [...html.matchAll(/<a class="project-card-link" href="proyectos\/([^\"]+)\/"/g)];
-  assert.equal(projectCardLinks.length, 7);
+  assert.equal(projectCardLinks.length, 8);
   assert.doesNotMatch(html, /<a class="detail-link"/);
   assert.match(html, /6,5, escala de 0 a 10/);
   assert.match(html, /7,1, escala de 0 a 10/);
@@ -144,6 +146,7 @@ test("defines one canonical official page for every project", () => {
     ["urban-suites-alicante", "https://www.civislend.com/proyecto/978"],
     ["vivaldi-ii", "https://urbanitae.com/es/proyecto/P000499/?goToTab=documents"],
     ["residencial-altay", "https://urbanitae.com/es/proyecto/P000498/?goToTab=documents"],
+    ["valencia-mirador-sur", "https://urbanitae.com/es/proyecto/P000501/?goToTab=documents"],
     ["madrid-atlas-nuevo-ahijones", "https://www.wecity.com/oportunidades/madrid-atlas-nuevo-ahijones/"],
     ["malaga-benahavis", "https://www.wecity.com/oportunidades/malaga-benahavis/"],
   ]);
@@ -185,6 +188,7 @@ for (const id of [
   "toboso-madrid",
   "vivaldi-ii",
   "residencial-altay",
+  "valencia-mirador-sur",
   "madrid-atlas-nuevo-ahijones",
   "malaga-benahavis",
 ]) {
