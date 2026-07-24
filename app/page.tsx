@@ -153,13 +153,6 @@ function MaintenancePage() {
             Estamos revisando cómo presentamos la información para que cada
             análisis sea más claro, riguroso y fácil de contrastar.
           </p>
-          <div className="maintenance-notice">
-            <span>01</span>
-            <p>
-              Mientras dura esta mejora, los análisis no se muestran
-              públicamente.
-            </p>
-          </div>
           <p className="maintenance-return">Volveremos pronto.</p>
         </div>
 

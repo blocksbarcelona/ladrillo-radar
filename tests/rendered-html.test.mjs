@@ -32,8 +32,12 @@ test("exports the temporary maintenance homepage without analyses", async () => 
   assert.match(html, /Ladrillo Radar/);
   assert.match(html, /Estamos mejorando Ladrillo Radar/);
   assert.match(html, /Mejora en curso/);
-  assert.match(html, /los análisis no se muestran/);
   assert.match(html, /Volveremos pronto/);
+  assert.doesNotMatch(
+    html,
+    /Mientras dura esta mejora, los análisis no se muestran públicamente/,
+  );
+  assert.doesNotMatch(html, /class="maintenance-notice"/);
   assert.match(html, /Ladrillo Radar — Estamos mejorando/);
   assert.doesNotMatch(html, /Actuales y próximos|Proyectos pasados|COMPARATIVA DIRECTA/);
   assert.doesNotMatch(html, /class="project-card|href="proyectos\//);
