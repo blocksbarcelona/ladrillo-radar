@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Ladrillo Radar — Auditorías de crowdfunding inmobiliario",
   description:
-    "Auditorías locales de Civislend, Urbanitae y wecity: documentación, inconsistencias, promotor, fechas y puntuación en escala de 0 a 10.",
+    "Fichas documentales de Civislend, Urbanitae y wecity: datos, fuentes, cálculos y un indicador técnico en escala de 0 a 10.",
   icons: {
     icon: `${siteUrl}/favicon.png`,
     shortcut: `${siteUrl}/favicon.png`,

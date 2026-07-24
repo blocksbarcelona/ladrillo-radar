@@ -312,7 +312,7 @@ nav a:hover { border-bottom-color: var(--ink); }
 .card-alerts ul { margin: 11px 0 0; padding: 0; list-style: none; }
 .card-alerts li { position: relative; padding-left: 13px; font-size: 11px; line-height: 1.45; }
 .card-alerts li + li { margin-top: 7px; }
-.card-alerts li::before { content: "!"; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+.card-alerts li::before { content: "•"; position: absolute; left: 0; color: var(--muted); font-weight: 900; }
 .detail-link {
   min-height: 50px;
   padding: 0 20px;

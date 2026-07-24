@@ -68,15 +68,18 @@ cualquier hosting de archivos estáticos.
 
 ## Criterio de análisis
 
-La puntuación global va de 0 a 10 y aplica ocho bloques: garantía y cobertura
+El indicador técnico va de 0 a 10 y aplica ocho bloques: garantía y cobertura
 (20%), apalancamiento y equity (15%), técnico y costes pendientes (15%), salida
 y comercialización (15%), promotor (10%), legal (10%), coherencia documental
 (10%) y condiciones/retorno (5%). No representa una probabilidad matemática de
-impago. Una ausencia de datos reduce la confianza, pero no se presenta como
-prueba de que el dato oculto sea negativo.
+impago. Los bloques no evaluables se excluyen de la fórmula y la cobertura se
+publica por separado; una ausencia de datos nunca se convierte en un dato
+negativo.
 
-Los documentos protegidos se enumeran en la ficha de evidencias, pero no se
-copian a la exportación pública de GitHub Pages.
+En cada revisión se descargan y catalogan localmente todos los documentos
+disponibles, incluidos los accesibles mediante sesión autorizada. Los PDF no se
+copian a la exportación pública de GitHub Pages; la web remite a la página
+oficial del proyecto.
 
 La web no ofrece asesoramiento financiero. Las condiciones pueden cambiar tras
 el corte y toda inversión puede implicar pérdida de capital e iliquidez.

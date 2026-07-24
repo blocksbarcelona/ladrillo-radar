@@ -63,7 +63,8 @@ test("exports the complete static radar", async () => {
   assert.match(html, /score-chip score-band-orange" data-score-band="orange" aria-label="5,5/);
   assert.match(html, /score-chip score-band-green-soft" data-score-band="green-soft" aria-label="7,1/);
   assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="4,0/);
-  assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="3,1/);
+  assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="3,9/);
+  assert.match(html, /score-chip score-band-orange" data-score-band="orange" aria-label="5,2/);
   assert.doesNotMatch(html, /COMPARATIVA DIRECTA|href="\#comparativa"/);
   assert.doesNotMatch(html, /\/10/);
   assert.match(html, /logos\/urbanitae\.svg/);
@@ -200,8 +201,8 @@ for (const id of [
   test(`exports the complete detail page for ${id}`, async () => {
     const html = await readFile(new URL(`proyectos/${id}/index.html`, root), "utf8");
 
-    assert.match(html, /Carencias y riesgos pendientes/);
-    assert.match(html, /Inconsistencias y matices/);
+    assert.match(html, /Estado y comprobaciones pendientes/);
+    assert.match(html, /Diferencias objetivas entre fuentes/);
     assert.match(html, /Quién está detrás/);
     const companyHeadingIndex = html.indexOf("Quién está detrás");
     const analysisLimitIndex = html.indexOf("LÍMITE DEL ANÁLISIS");
@@ -238,18 +239,20 @@ for (const id of [
   });
 }
 
-test("publishes the provisional Talvion audit with its critical inconsistencies", async () => {
+test("publishes the complete neutral Talvion audit from the protected originals", async () => {
   const html = await readFile(new URL("proyectos/talvion-puerto-sagunto/index.html", root), "utf8");
 
-  assert.match(html, /2\.653\.375 €/);
-  assert.match(html, /121\.580 €/);
-  assert.match(html, /Hipoteca de segundo rango/);
-  assert.match(html, /Licencia no solicitada/);
-  assert.match(html, /WHITE INVESTING RE S\.A\./);
-  assert.match(html, /score-band-red/);
+  assert.match(html, /6\.640\.125 €/);
+  assert.match(html, /10\.300\.000 €/);
+  assert.match(html, /5\.973\.843,43 €/);
+  assert.match(html, /ARCELORMITTAL ESPAÑA, S\.A\./);
+  assert.match(html, /ZYRON HOME, S\.L\./);
+  assert.match(html, /WHITE INVESTING RE, S\.A\./);
+  assert.match(html, /score-band-orange/);
   assert.match(html, /data-document-access="public"/);
   assert.match(html, /href="https:\/\/www\.civislend\.com\/proyecto\/984"/);
   assert.doesNotMatch(html, /href="https:\/\/www\.civislend\.com\/document\//);
+  assert.doesNotMatch(html, /no se ha extraído|no se han extraído|No descargado durante esta revisión/i);
 });
 
 test("publishes the compact company diligence for Málaga Benahavís", async () => {

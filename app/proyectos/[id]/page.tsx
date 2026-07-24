@@ -31,8 +31,8 @@ export async function generateMetadata({
   if (!project) return {};
 
   return {
-    title: `${project.name} — Auditoría · Ladrillo Radar`,
-    description: `Análisis documental, inconsistencias, riesgos y promotor de ${project.name} en ${project.platform}.`,
+    title: `${project.name} — Ficha documental · Ladrillo Radar`,
+    description: `Datos, cálculos, fuentes y comprobaciones de ${project.name} en ${project.platform}.`,
   };
 }
 
@@ -57,7 +57,7 @@ export default async function ProjectDetail({
           <span>Ladrillo Radar</span>
         </a>
         <nav aria-label="Navegación de la ficha">
-          <a href="#carencias">Carencias</a>
+          <a href="#carencias">Comprobaciones</a>
           <a href="#empresa">Empresa</a>
           <a href="#documentos">Documentos</a>
         </nav>
@@ -83,11 +83,11 @@ export default async function ProjectDetail({
           <aside
             className={`detail-score score-band-${getScoreBand(project.score)}`}
             data-score-band={getScoreBand(project.score)}
-            aria-label={`Puntuación ${formatScore(project.score)}, escala de 0 a 10`}
+            aria-label={`Indicador técnico ${formatScore(project.score)}, escala de 0 a 10`}
           >
-            <span>PUNTUACIÓN DEL CORTE</span>
+            <span>INDICADOR DEL CORTE</span>
             <div><strong>{formatScore(project.score)}</strong></div>
-            <p>Riesgo observable · {project.risk}</p>
+            <p>Nivel técnico · {project.risk}</p>
           </aside>
         </div>
 
@@ -111,15 +111,15 @@ export default async function ProjectDetail({
         <div className="detail-section detail-summary" id="resumen">
           <div className="detail-section-heading">
             <span>01</span>
-            <div><p>LECTURA RÁPIDA</p><h2>Lo mejor y lo que frena la nota</h2></div>
+            <div><p>LECTURA RÁPIDA</p><h2>Datos documentados y datos a contrastar</h2></div>
           </div>
           <div className="summary-columns">
             <div className="positive-box">
-              <h3>A favor</h3>
+              <h3>Documentado</h3>
               <ul>{project.strengths.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="warning-box">
-              <h3>Vigilar</h3>
+              <h3>Contrastar</h3>
               <ul>{project.watch.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
@@ -128,23 +128,22 @@ export default async function ProjectDetail({
         <div className="detail-section" id="carencias">
           <div className="detail-section-heading">
             <span>02</span>
-            <div><p>AUDITORÍA DOCUMENTAL</p><h2>Carencias y riesgos pendientes</h2></div>
+            <div><p>REVISIÓN DOCUMENTAL</p><h2>Estado y comprobaciones pendientes</h2></div>
           </div>
           <div className="issues-list">
             {project.deficiencies.map((issue, index) => (
               <article className="issue-card" key={issue.title}>
                 <div className="issue-index">{String(index + 1).padStart(2, "0")}</div>
                 <div>
-                  <span className={`severity severity-${issue.severity.toLowerCase()}`}>{issue.severity}</span>
                   <h3>{issue.title}</h3>
                   <p>{issue.detail}</p>
                 </div>
                 <div className="issue-impact">
-                  <span>POR QUÉ IMPORTA</span>
+                  <span>DATO RELACIONADO</span>
                   <p>{issue.impact}</p>
                 </div>
                 <div className="issue-verify">
-                  <span>QUÉ VERIFICAR</span>
+                  <span>FUENTE PARA CONTRASTAR</span>
                   <p>{issue.verify}</p>
                 </div>
               </article>
@@ -155,7 +154,7 @@ export default async function ProjectDetail({
         <div className="detail-section calculation-section" id="inconsistencias">
           <div className="detail-section-heading">
             <span>03</span>
-            <div><p>CÁLCULOS PROPIOS</p><h2>Inconsistencias y matices</h2></div>
+            <div><p>CÁLCULOS PROPIOS</p><h2>Diferencias objetivas entre fuentes</h2></div>
           </div>
           <div className="calculation-grid">
             {project.inconsistencies.map((item) => (
@@ -163,7 +162,7 @@ export default async function ProjectDetail({
                 <h3>{item.title}</h3>
                 <div><span>PUBLICADO</span><p>{item.published}</p></div>
                 <div className="formula"><span>CÁLCULO</span><strong>{item.calculation}</strong></div>
-                <div><span>LECTURA</span><p>{item.reading}</p></div>
+                <div><span>ALCANCE</span><p>{item.reading}</p></div>
               </article>
             ))}
           </div>

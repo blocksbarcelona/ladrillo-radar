@@ -105,7 +105,7 @@ function ProjectCard({ project, currentTime }: { project: Project; currentTime: 
           <strong>{project.size}</strong>
         </div>
         <div>
-          <span>RIESGO</span>
+          <span>NIVEL</span>
           <strong>{project.risk}</strong>
         </div>
       </div>
@@ -113,7 +113,7 @@ function ProjectCard({ project, currentTime }: { project: Project; currentTime: 
       <p className="card-verdict">{project.verdict}</p>
 
       <div className="card-alerts">
-        <span>PRINCIPALES ALERTAS</span>
+        <span>DATOS A CONTRASTAR</span>
         <ul>
           {project.watch.slice(0, 2).map((item) => (
             <li key={item}>{item}</li>
@@ -179,8 +179,8 @@ export default function Home() {
           <p className="eyebrow">ANÁLISIS INDEPENDIENTE · CROWDFUNDING INMOBILIARIO</p>
           <h1>Proyectos en radar</h1>
           <p className="overview-copy">
-            Auditorías locales de Civislend, Urbanitae y wecity, normalizadas con
-            sus fechas, cifras, documentación, promotor e inconsistencias.
+            Fichas documentales de Civislend, Urbanitae y wecity, normalizadas con
+            sus fechas, cifras, fuentes y cálculos reproducibles.
           </p>
         </div>
         <div className="overview-stats" aria-label="Resumen del corte">
@@ -215,7 +215,7 @@ export default function Home() {
 
         <div className="select-controls">
           <label>
-            <span>RIESGO</span>
+            <span>NIVEL TÉCNICO</span>
             <select value={risk} onChange={(event) => setRisk(event.target.value as "Todos" | Risk)}>
               <option>Todos</option>
               {availableRisks.map((item) => <option key={item}>{item}</option>)}
@@ -320,12 +320,12 @@ export default function Home() {
       <section className="method-section" id="metodo">
         <div className="method-intro">
           <p className="eyebrow">MÉTODO · ESCALA 0–10</p>
-          <h2>Una puntuación auditable, no una caja negra.</h2>
+          <h2>Un indicador trazable, no una recomendación.</h2>
           <p>
-            La nota aplica ocho bloques ponderados de la metodología local. Las
-            ausencias críticas limitan la puntuación y una rentabilidad alta no
-            compensa una garantía, licencia o salida débiles. No es una
-            probabilidad matemática de impago.
+            El indicador aplica ocho bloques ponderados a los datos que pueden
+            medirse. Un dato no localizado queda sin evaluar y no se considera
+            negativo. La ficha separa hechos, declaraciones, cálculos y preguntas
+            pendientes para que cada lector consulte las fuentes y forme su criterio.
           </p>
         </div>
         <div className="method-list">
@@ -342,8 +342,8 @@ export default function Home() {
       <footer>
         <div><span className="brand-mark" aria-hidden="true">LR</span><strong>Ladrillo Radar</strong></div>
         <p>
-          Análisis independiente con corte a {SNAPSHOT_LABEL.toLowerCase()}. No es asesoramiento
-          financiero: existe riesgo de pérdida de capital e iliquidez.
+          Información documental con corte a {SNAPSHOT_LABEL.toLowerCase()}. No es asesoramiento
+          financiero. Consulta las fuentes oficiales y contrasta los datos antes de decidir.
         </p>
         <a href="#inicio">Volver arriba ↑</a>
         <UberleapCredit />
