@@ -45,14 +45,16 @@ test("exports the complete static radar", async () => {
   assert.match(html, /Valencia I · Proyecto Mirador Sur/);
   assert.match(html, /Madrid Atlas Nuevo Ahijones/);
   assert.match(html, /Málaga Benahavís/);
+  assert.match(html, /Talvion Puerto de Sagunto/);
   assert.match(html, /proyectos\/residencial-mas-marti\//);
   assert.match(html, /proyectos\/vivaldi-ii\//);
   assert.match(html, /proyectos\/residencial-altay\//);
   assert.match(html, /proyectos\/valencia-mirador-sur\//);
   assert.match(html, /proyectos\/madrid-atlas-nuevo-ahijones\//);
   assert.match(html, /proyectos\/malaga-benahavis\//);
+  assert.match(html, /proyectos\/talvion-puerto-sagunto\//);
   const projectCardLinks = [...html.matchAll(/<a class="project-card-link" href="proyectos\/([^\"]+)\/"/g)];
-  assert.equal(projectCardLinks.length, 8);
+  assert.equal(projectCardLinks.length, 9);
   assert.doesNotMatch(html, /<a class="detail-link"/);
   assert.match(html, /6,5, escala de 0 a 10/);
   assert.match(html, /7,1, escala de 0 a 10/);
@@ -61,6 +63,7 @@ test("exports the complete static radar", async () => {
   assert.match(html, /score-chip score-band-orange" data-score-band="orange" aria-label="5,5/);
   assert.match(html, /score-chip score-band-green-soft" data-score-band="green-soft" aria-label="7,1/);
   assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="4,0/);
+  assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="3,1/);
   assert.doesNotMatch(html, /COMPARATIVA DIRECTA|href="\#comparativa"/);
   assert.doesNotMatch(html, /\/10/);
   assert.match(html, /logos\/urbanitae\.svg/);
@@ -149,6 +152,7 @@ test("defines one canonical official page for every project", () => {
     ["valencia-mirador-sur", "https://urbanitae.com/es/proyecto/P000501/?goToTab=documents"],
     ["madrid-atlas-nuevo-ahijones", "https://www.wecity.com/oportunidades/madrid-atlas-nuevo-ahijones/"],
     ["malaga-benahavis", "https://www.wecity.com/oportunidades/malaga-benahavis/"],
+    ["talvion-puerto-sagunto", "https://www.civislend.com/proyecto/984"],
   ]);
 
   assert.equal(projects.length, expectedProjectUrls.size);
@@ -191,6 +195,7 @@ for (const id of [
   "valencia-mirador-sur",
   "madrid-atlas-nuevo-ahijones",
   "malaga-benahavis",
+  "talvion-puerto-sagunto",
 ]) {
   test(`exports the complete detail page for ${id}`, async () => {
     const html = await readFile(new URL(`proyectos/${id}/index.html`, root), "utf8");
@@ -232,6 +237,20 @@ for (const id of [
     assertUberleapCredit(html);
   });
 }
+
+test("publishes the provisional Talvion audit with its critical inconsistencies", async () => {
+  const html = await readFile(new URL("proyectos/talvion-puerto-sagunto/index.html", root), "utf8");
+
+  assert.match(html, /2\.653\.375 €/);
+  assert.match(html, /121\.580 €/);
+  assert.match(html, /Hipoteca de segundo rango/);
+  assert.match(html, /Licencia no solicitada/);
+  assert.match(html, /WHITE INVESTING RE S\.A\./);
+  assert.match(html, /score-band-red/);
+  assert.match(html, /data-document-access="public"/);
+  assert.match(html, /href="https:\/\/www\.civislend\.com\/proyecto\/984"/);
+  assert.doesNotMatch(html, /href="https:\/\/www\.civislend\.com\/document\//);
+});
 
 test("publishes the compact company diligence for Málaga Benahavís", async () => {
   const html = await readFile(new URL("proyectos/malaga-benahavis/index.html", root), "utf8");

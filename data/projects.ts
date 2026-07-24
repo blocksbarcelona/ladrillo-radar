@@ -12,8 +12,8 @@ export type CompanyEvidenceStatus =
   | "Contradictorio"
   | "No localizado";
 
-export const SNAPSHOT_DATE = "2026-07-23";
-export const SNAPSHOT_LABEL = "23 JUL 2026";
+export const SNAPSHOT_DATE = "2026-07-24";
+export const SNAPSHOT_LABEL = "24 JUL 2026";
 
 export const platformMeta: Record<
   Platform,
@@ -125,6 +125,335 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "talvion-puerto-sagunto",
+    projectUrl: "https://www.civislend.com/proyecto/984",
+    platform: "Civislend",
+    name: "Talvion Puerto de Sagunto",
+    location: "Puerto de Sagunto · Valencia",
+    date: {
+      isoDateTime: "2026-07-29T12:00:00+02:00",
+      label: "29 jul 2026 · 12:00 CEST",
+      type: "Apertura",
+      note: "Apertura programada por Civislend para el miércoles 29 de julio de 2026 a las 12:00 CEST.",
+    },
+    status: "Apertura programada",
+    score: 3.1,
+    risk: "Muy alto",
+    returnLabel: "13% TIN · 19,5% total",
+    term: "18 meses · +6 de prórroga",
+    size: "3,20 M€ · 6,52 M€ con banco",
+    ltv: "55,35% combinado · 2º rango",
+    guarantee: "Hipoteca de 2º rango sobre 3 suelos",
+    promoter: "1.126.619 € declarados",
+    progress: "Suelo pendiente de compra · sin licencia solicitada",
+    exit: "Venta del suelo a la cooperativa + préstamo promotor",
+    verdict:
+      "Esperar. El 13% TIN no compensa una hipoteca de segundo rango, la licencia aún no solicitada, la dependencia de alcanzar el 70% de preventas y dos descuadres materiales en la estructura de fondos. La nota queda limitada por no haber podido revisar los documentos originales protegidos.",
+    strengths: [
+      "La plataforma declara un valor de tasación actual de 11,78 M€ frente a 6,52 M€ de deuda conjunta, equivalente a un LTV combinado calculado del 55,35%.",
+      "Se anuncia una aportación del promotor de 1.126.619 € en la firma y un préstamo bancario para suelo ya aprobado por 3.320.006 €.",
+      "Civislend declara dos operaciones anteriores con el gestor reembolsadas en mayo y julio de 2026.",
+      "La prórroga de seis meses mantiene el 13% TIN y la amortización anticipada no tiene penalización desde el mes 6.",
+    ],
+    watch: [
+      "Civislend queda detrás de un préstamo bancario de 3.320.006 €; el 55% de LTV no muestra por sí solo la recuperación específica del segundo rango.",
+      "La licencia no se ha solicitado y el proyecto básico sigue en redacción.",
+      "La salida exige vender los suelos a la cooperativa, obtener licencia, alcanzar el 70% de preventas y activar el préstamo promotor bancario.",
+      "Sólo se declaran 33 reservas de 135 viviendas de un bloque: son el 12,4% de las 267 viviendas totales.",
+      "Las fuentes anunciadas en la firma suman 7.646.625 €, 2.653.375 € menos que el precio de compra publicado.",
+      "La ficha asigna 2,40 M€ a suelo y dos veces 460.790 € a gastos y soft costs; esa suma excede en 121.580 € el préstamo.",
+    ],
+    facts: [
+      { label: "Activo", value: "2 suelos urbanos · 3 parcelas · 3 fincas registrales" },
+      { label: "Superficie de suelo", value: "3.148 m²" },
+      { label: "Programa", value: "267 viviendas con garaje, trastero y zonas comunes" },
+      { label: "Edificación anunciada", value: "2 sótanos + planta baja + 10 alturas" },
+      { label: "Precio de compra", value: "10.300.000 €" },
+      { label: "Tasación actual declarada", value: "11.780.173–11.780.174 €", note: "La ficha publica dos cifras separadas por un euro." },
+      { label: "Préstamo Civislend", value: "3.200.000 € · segundo rango" },
+      { label: "Préstamo bancario", value: "3.320.006 € · primer rango", note: "Aprobado según la plataforma; no se revisó el contrato o compromiso bancario." },
+      { label: "Deuda conjunta", value: "6.520.006 €" },
+      { label: "LTV combinado calculado", value: "55,35%" },
+      { label: "Aportación del promotor", value: "1.126.619 € declarados en la firma" },
+      { label: "Fuentes identificadas", value: "7.646.625 €", note: "No reconcilian el precio de compra de 10,30 M€." },
+      { label: "Primera disposición", value: "2.400.000 €" },
+      { label: "Formalización", value: "460.790 € aproximados", note: "La redacción no aclara si forma parte o se añade a la primera disposición." },
+      { label: "Soft costs", value: "460.790 € aproximados", note: "No coincide con el remanente matemático de 339.210 €." },
+      { label: "Licencia", value: "No solicitada", note: "Se solicitará tras comprar el suelo; el proyecto básico está en redacción." },
+      { label: "Reservas", value: "33 de 135 en un bloque · 12,4% del total" },
+      { label: "Umbral para la salida", value: "70% de preventas + licencia" },
+      { label: "Precio medio declarado", value: "239.700 € por vivienda con anejos" },
+      { label: "Pago", value: "Capital e intereses al vencimiento · devengo desde formalización" },
+      { label: "Amortización anticipada", value: "Desde el mes 6 · sin penalización" },
+      { label: "Entrada mínima", value: "250 € · sin máximo publicado" },
+    ],
+    company: {
+      publicName: "Talvion",
+      legalName:
+        "Gestor: TALVION RE S.A. según su web / WHITE INVESTING RE S.A. según BORME · CIF A98721020 · prestataria no identificada en abierto",
+      identity:
+        "Civislend identifica a Talvion como gestor de la cooperativa, pero la ficha visible no identifica la sociedad prestataria, la cooperativa, el comprador del suelo ni los garantes. El aviso legal atribuye el CIF A98721020 a TALVION RE S.A.; el BORME seguía publicando ese mismo CIF y hoja registral como WHITE INVESTING RE S.A. en diciembre de 2025.",
+      profile:
+        "Gestora de inversión y proyectos inmobiliarios con presencia corporativa en Valencia. Declara actividades de investment management, project management y asset management.",
+      trackRecord:
+        "Civislend declara aproximadamente diez años de actividad, 21 proyectos finalizados y 30 en curso. La web corporativa también anuncia 30 proyectos activos, pero no aporta una relación normalizada con sociedades, inversión, plazos y resultados finales.",
+      alignment:
+        "Se anuncian 1.126.619 € del promotor en la firma, sin prueba pública de desembolso, origen, subordinación o permanencia. La estructura publicada deja además 2.653.375 € del precio de compra sin fuente identificada.",
+      caveat:
+        "La experiencia del gestor no puede atribuirse automáticamente a la prestataria o cooperativa, cuya identidad y cuentas no están disponibles en la ficha abierta. La contradicción societaria del aviso legal debe aclararse antes de usar datos financieros del grupo.",
+      summary: [
+        { label: "Constitución", value: "17 mar 2015", note: "Fecha asociada en LEI a A98721020; la denominación registral localizada es White Investing RE, S.A." },
+        { label: "Patrimonio neto", value: "No localizado", note: "Sin cuentas completas de prestataria, cooperativa o gestor en el expediente accesible" },
+        { label: "Liquidez / resultado", value: "No localizados", note: "No constan caja, deuda ni resultados completos y recientes" },
+        { label: "Equity declarado", value: "1.126.619 €", note: "Aportación anunciada en la firma; falta evidencia de desembolso y subordinación" },
+      ],
+      evidence: [
+        {
+          label: "Identidad y perímetro",
+          status: "Contradictorio",
+          summary:
+            "No se identifica en abierto la prestataria, la cooperativa, el comprador del suelo ni todos los garantes. El aviso legal llama TALVION RE S.A. al CIF A98721020, mientras el BORME mantiene WHITE INVESTING RE S.A. para la misma hoja registral.",
+          asOf: "Corte 24 jul 2026",
+          sources: [
+            { label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" },
+            { label: "Aviso legal de Talvion", url: "https://www.talvion.com/aviso-legal/" },
+            { label: "BORME · acto de diciembre de 2025", url: "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2025-240-46" },
+          ],
+        },
+        {
+          label: "Presencia real",
+          status: "Parcial",
+          summary:
+            "Talvion mantiene web, teléfono, correo y oficina en Valencia. El aviso legal publica Paseo Ruzafa 2, mientras el pie de la web y el registro localizado sitúan la sociedad en Paseo Ruzafa 20; debe corregirse o explicarse.",
+          asOf: "Corte 24 jul 2026",
+          sources: [
+            { label: "Web corporativa", url: "https://www.talvion.com/" },
+            { label: "Aviso legal", url: "https://www.talvion.com/aviso-legal/" },
+          ],
+        },
+        {
+          label: "Experiencia comparable",
+          status: "Declarado",
+          summary:
+            "Civislend atribuye al gestor 21 proyectos finalizados y 30 en curso. Talvion publica el activo de Puerto de Sagunto, pero lo describe como 134 viviendas, frente a 267 en Civislend y 135 para el primer bloque.",
+          asOf: "Declaraciones vigentes a 24 jul 2026",
+          sources: [
+            { label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" },
+            { label: "Proyecto en Talvion", url: "https://www.talvion.com/portfolio/residencial-1a-cooperativa-puerto-de-sagunto-valencia/" },
+          ],
+        },
+        {
+          label: "Historial en plataformas",
+          status: "Parcial",
+          summary:
+            "Civislend declara dos operaciones previas reembolsadas: Residencia de estudiantes Cádiz, 1,20 M€ al 11% en julio de 2026, y La Florista Valencia, 725.000 € al 11% en mayo de 2026. No se revisaron liquidaciones finales independientes.",
+          asOf: "Declaración de Civislend · 24 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" }],
+        },
+        {
+          label: "Cuentas depositadas",
+          status: "No localizado",
+          summary:
+            "No se han podido revisar cuentas anuales completas de la prestataria, cooperativa ni gestor. El BORME registra a Crowe Valencia como auditor de White Investing RE S.A. en 2025, pero no aporta por sí solo balance, resultados ni salvedades.",
+          asOf: "Último ejercicio completo no acreditado",
+          sources: [
+            { label: "BORME · nombramiento de auditor", url: "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2025-28-46" },
+            { label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" },
+          ],
+        },
+        {
+          label: "Solvencia y liquidez",
+          status: "No localizado",
+          summary:
+            "No constan caja, activo corriente, pasivo corriente, deuda financiera, patrimonio, ingresos o resultados suficientes de las entidades obligadas para medir liquidez o capacidad de cubrir sobrecostes.",
+          asOf: "Corte 24 jul 2026",
+          sources: [{ label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" }],
+        },
+        {
+          label: "Incidencias",
+          status: "Contradictorio",
+          summary:
+            "Se han localizado discrepancias de denominación social, domicilio, número de viviendas y flujo financiero. No se ha acreditado la ausencia de concursos, litigios, sanciones o deudas públicas de prestataria, cooperativa y vinculadas.",
+          asOf: "Corte 24 jul 2026",
+          sources: [
+            { label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" },
+            { label: "Aviso legal de Talvion", url: "https://www.talvion.com/aviso-legal/" },
+            { label: "BORME", url: "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2025-240-46" },
+          ],
+        },
+        {
+          label: "Alineación económica",
+          status: "Contradictorio",
+          summary:
+            "La aportación declarada de 1.126.619 € no está acreditada como desembolsada y subordinada. Además, Civislend, promotor y banco suman 7.646.625 €, 2.653.375 € menos que el precio de compra, y el desglose del préstamo excede el total en 121.580 €.",
+          asOf: "Estructura publicada · 24 jul 2026",
+          sources: [
+            { label: "Ficha del proyecto", url: "https://www.civislend.com/proyecto/984" },
+            { label: "Estudio económico", url: "https://www.civislend.com/document/256086", access: "restricted" },
+          ],
+        },
+      ],
+    },
+    deficiencies: [
+      {
+        severity: "Crítica",
+        title: "Prestataria y cooperativa no identificadas en abierto",
+        detail:
+          "La ficha visible identifica a Talvion como gestor, pero no delimita la sociedad prestataria, la cooperativa compradora, el titular actual de los suelos, los garantes ni el beneficiario último.",
+        impact:
+          "Sin perímetro jurídico no puede evaluarse quién debe devolver el préstamo, qué patrimonio responde y cómo se conectan la venta del suelo, la cooperativa y la deuda bancaria.",
+        verify:
+          "Ficha de datos fundamentales, escritura proyectada, organigrama societario, NIF de cada interviniente, administradores, garantes y contratos entre vinculadas.",
+      },
+      {
+        severity: "Crítica",
+        title: "Hipoteca de segundo rango y salida dependiente del banco",
+        detail:
+          "Civislend queda detrás de un préstamo bancario de 3.320.006 €. La salida exige que esa misma entidad conceda después el préstamo promotor.",
+        impact:
+          "En ejecución cobra primero el banco. Un LTV combinado del 55,35% no garantiza la recuperación íntegra del segundo rango tras intereses, gastos, descuentos y plazo de ejecución.",
+        verify:
+          "Oferta bancaria firmada, escritura de primer rango, acuerdo entre acreedores, valor de subasta, límites de disposiciones y waterfall de recuperación.",
+      },
+      {
+        severity: "Crítica",
+        title: "Licencia no solicitada y proyecto básico en redacción",
+        detail:
+          "La licencia se pedirá después de adquirir el suelo y el proyecto básico todavía se está redactando.",
+        impact:
+          "El repago en 18 meses depende de tramitar una licencia para 267 viviendas, alcanzar preventas y cerrar financiación promotora dentro del mismo plazo.",
+        verify:
+          "Proyecto básico completo, consulta urbanística, calendario administrativo, hitos del contrato y condición que impida nuevas disposiciones si la licencia se retrasa.",
+      },
+      {
+        severity: "Crítica",
+        title: "Fuentes de compra incompletas",
+        detail:
+          "Las aportaciones publicadas en la firma suman 7.646.625 €, mientras el precio de compra es 10.300.000 €.",
+        impact:
+          "Faltan 2.653.375 € de financiación o una explicación del precio, pagos diferidos y usos. Sin conciliación no se puede verificar el cierre de la compra.",
+        verify:
+          "Cuadro de fuentes y usos completo, contrato de compraventa, calendario de pagos, impuestos, gastos y justificantes de fondos propios.",
+      },
+      {
+        severity: "Alta",
+        title: "Preventas muy por debajo del umbral de salida",
+        detail:
+          "Se declaran 33 reservas de 135 viviendas de un bloque. Sobre 267 viviendas totales representan el 12,4%, mientras el préstamo promotor exige el 70% de preventas.",
+        impact:
+          "La operación necesita un salto comercial muy elevado antes de activar la financiación bancaria que reembolsaría a Civislend.",
+        verify:
+          "Listado anonimizado de reservas, depósitos, cancelaciones, ritmo mensual, precios por tipología y definición bancaria exacta de preventa computable.",
+      },
+      {
+        severity: "Alta",
+        title: "Documentación original no revisable en este corte",
+        detail:
+          "La tasación, tres notas simples, la ficha de datos fundamentales, el informe de riesgos y el estudio económico requieren acceso identificado y no se pudieron descargar durante la revisión.",
+        impact:
+          "No se han verificado titularidad, cargas, valor por finca, identidad del obligado, condiciones bancarias ni conciliación contractual. La puntuación queda provisionalmente limitada.",
+        verify:
+          "Revisión íntegra de los doce documentos publicados por Civislend y rectificación formal de los descuadres antes de invertir.",
+      },
+    ],
+    inconsistencies: [
+      {
+        title: "El cuadro de fondos no alcanza el precio de compra",
+        published: "Civislend 3.200.000 € + promotor 1.126.619 € + banco 3.320.006 € frente a compra de 10.300.000 €.",
+        calculation: "7.646.625 € de fuentes · diferencia de 2.653.375 €",
+        reading: "El reparto 42% / 15% / 43% suma el 100% de 7,6466 M€, no del precio de compra publicado.",
+      },
+      {
+        title: "El destino del préstamo excede el total",
+        published: "2.400.000 € para suelo, 460.790 € de formalización añadidos y 460.790 € restantes para soft costs.",
+        calculation: "2.400.000 + 460.790 + 460.790 = 3.321.580 € · exceso de 121.580 €",
+        reading: "Si la formalización forma parte del primer desembolso, el remanente sería 339.210 €, no 460.790 €.",
+      },
+      {
+        title: "LTV redondeado a la baja",
+        published: "LTV total del 55% sobre una tasación de 11.780.173 €.",
+        calculation: "(3.200.000 + 3.320.006) / 11.780.173 = 55,35%",
+        reading: "El redondeo es pequeño, pero debe mostrarse que incluye la deuda bancaria prioritaria y no describe la recuperación del segundo rango.",
+      },
+      {
+        title: "Dos cifras de tasación",
+        published: "11.780.174 € en datos clave y 11.780.173 € en descripción y garantías.",
+        calculation: "Diferencia = 1 €",
+        reading: "No cambia el riesgo, pero confirma falta de una cifra maestra única en la ficha.",
+      },
+      {
+        title: "Reservas presentadas como 25%",
+        published: "33 de 135 viviendas reservadas en un bloque, descritas como 25%.",
+        calculation: "33 / 135 = 24,44% · 33 / 267 = 12,36% del proyecto total",
+        reading: "La comercialización destacada no debe confundirse con el avance global hacia el 70% exigido para la salida bancaria.",
+      },
+      {
+        title: "Número de viviendas no conciliado",
+        published: "Civislend anuncia 267 viviendas y cita 135 en el primer bloque; Talvion publica el residencial de Puerto de Sagunto con 134 unidades.",
+        calculation: "Diferencia de 1 vivienda en el bloque y 133 frente al conjunto",
+        reading: "Puede tratarse de una fase o bloque distinto, pero las fuentes no delimitan qué fincas, unidades y fase respaldan exactamente el préstamo.",
+      },
+      {
+        title: "Denominación social contradictoria",
+        published: "El aviso legal usa TALVION RE S.A. para el CIF A98721020; el BORME usa WHITE INVESTING RE S.A. para la misma hoja V-164755.",
+        calculation: "Mismo CIF y hoja registral · dos denominaciones",
+        reading: "Debe acreditarse si existe un cambio de denominación aún no localizado o si el aviso legal es incorrecto.",
+      },
+    ],
+    documents: [
+      { name: "Track record del promotor", status: "Acceso restringido", note: "Material del gestor; no sustituye cuentas ni comprobaciones independientes.", url: "https://www.civislend.com/document/255813" },
+      { name: "Estudio de mercado", status: "Acceso restringido", note: "Debe contrastarse con precios, absorción y reservas verificables.", url: "https://www.civislend.com/document/255894" },
+      { name: "Informe de riesgos", status: "Acceso restringido", note: "No descargado durante esta revisión.", url: "https://www.civislend.com/document/255897" },
+      { name: "Teaser", status: "Acceso restringido", note: "Resumen comercial; no sustituye documentos contractuales.", url: "https://www.civislend.com/document/255900" },
+      { name: "Tasación M4.1 y M4.2", status: "Acceso restringido", note: "Esencial para separar valor por finca, cargas y valor de subasta.", url: "https://www.civislend.com/document/255903" },
+      { name: "Nota simple M4.1", status: "Acceso restringido", note: "Esencial para verificar titularidad y cargas.", url: "https://www.civislend.com/document/255906" },
+      { name: "Nota simple M4.2", status: "Acceso restringido", note: "Esencial para verificar titularidad y cargas.", url: "https://www.civislend.com/document/255909" },
+      { name: "Nota simple M5", status: "Acceso restringido", note: "Esencial para verificar titularidad y cargas.", url: "https://www.civislend.com/document/256068" },
+      { name: "Ficha de datos fundamentales", status: "Acceso restringido", note: "Debe identificar prestataria, garantes, condiciones y riesgos contractuales.", url: "https://www.civislend.com/document/256071" },
+      { name: "Planos · plantas", status: "Acceso restringido", note: "Deben conciliarse con 267 viviendas, superficies y fincas.", url: "https://www.civislend.com/document/256077" },
+      { name: "Planos · alzados", status: "Acceso restringido", note: "Deben conciliarse con el proyecto básico y el alcance de la futura licencia.", url: "https://www.civislend.com/document/256080" },
+      { name: "Estudio económico", status: "Acceso restringido", note: "Debe reconciliar compra, fondos, disposiciones, costes y salida.", url: "https://www.civislend.com/document/256086" },
+    ],
+    questions: [
+      "¿Cuál es la denominación, NIF, órgano de administración y patrimonio de la prestataria, la cooperativa, el comprador y el titular actual de cada suelo?",
+      "¿Qué documento concilia los 10,30 M€ de compra con los 7.646.625 € de fondos identificados y explica los 2.653.375 € restantes?",
+      "¿El coste de formalización de 460.790 € está dentro de los 2,40 M€ iniciales o se añade, y por qué los soft costs repiten exactamente la misma cifra?",
+      "¿Qué derechos conserva Civislend frente al banco de primer rango y cuál es el waterfall de recuperación en un escenario de ejecución?",
+      "¿Existe una oferta bancaria vinculante para el préstamo promotor y qué condiciones exactas impone sobre licencia, preventas, precios y aportaciones?",
+      "¿Cómo se alcanzará el 70% de preventas desde 33 reservas y qué reservas son firmes, pagadas y computables para el banco?",
+      "¿Qué calendario realista permite comprar el suelo, terminar el proyecto básico, obtener licencia y refinanciar dentro de 18 meses?",
+      "¿Por qué Talvion publica 134 viviendas, Civislend cita 135 para el bloque y 267 para el proyecto completo?",
+      "¿Se ha inscrito un cambio de denominación de WHITE INVESTING RE S.A. a TALVION RE S.A. o debe corregirse el aviso legal?",
+      "¿Puede facilitarse la tasación, las tres notas simples, la ficha fundamental y el estudio económico completos antes de la apertura?",
+    ],
+    sources: [
+      {
+        label: "Civislend · Talvion Puerto de Sagunto",
+        url: "https://www.civislend.com/proyecto/984",
+        type: "Primaria",
+        note: "Página oficial del proyecto, cifras de la operación y acceso identificado a los doce documentos publicados.",
+      },
+      {
+        label: "Talvion · Residencial Puerto de Sagunto",
+        url: "https://www.talvion.com/portfolio/residencial-1a-cooperativa-puerto-de-sagunto-valencia/",
+        type: "Corporativa",
+        note: "Ficha corporativa del activo; publica 134 viviendas y advierte que las cifras están sujetas al plan de negocio.",
+      },
+      {
+        label: "Talvion · Aviso legal",
+        url: "https://www.talvion.com/aviso-legal/",
+        type: "Corporativa",
+        note: "Identifica TALVION RE S.A., CIF A98721020 y hoja V-164755; contiene una dirección distinta a la del pie de la web.",
+      },
+      {
+        label: "BORME · White Investing RE S.A.",
+        url: "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2025-240-46",
+        type: "Normativa",
+        note: "Último acto localizado para la hoja V-164755, publicado en diciembre de 2025 bajo la denominación WHITE INVESTING RE S.A.",
+      },
+    ],
+  },
   {
     id: "toboso-madrid",
     projectUrl: "https://www.civislend.com/proyecto/963",
