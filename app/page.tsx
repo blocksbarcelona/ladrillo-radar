@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { PlatformLogo } from "./components/PlatformLogo";
 import { UberleapCredit } from "./components/UberleapCredit";
+import { MAINTENANCE_MODE } from "./maintenance";
 import {
   formatScore,
   getScoreBand,
@@ -130,7 +131,82 @@ function ProjectCard({ project, currentTime }: { project: Project; currentTime: 
   );
 }
 
-export default function Home() {
+function MaintenancePage() {
+  return (
+    <main className="maintenance-page" id="inicio">
+      <header className="maintenance-header">
+        <div className="brand" aria-label="Ladrillo Radar">
+          <span className="brand-mark" aria-hidden="true">LR</span>
+          <span>Ladrillo Radar</span>
+        </div>
+        <div className="maintenance-status">
+          <span aria-hidden="true" />
+          Mejora en curso
+        </div>
+      </header>
+
+      <section className="maintenance-hero" aria-labelledby="maintenance-title">
+        <div className="maintenance-copy">
+          <p className="eyebrow">PAUSA TEMPORAL · ACTUALIZACIÓN DEL RADAR</p>
+          <h1 id="maintenance-title">Estamos mejorando Ladrillo Radar.</h1>
+          <p className="maintenance-intro">
+            Estamos revisando cómo presentamos la información para que cada
+            análisis sea más claro, riguroso y fácil de contrastar.
+          </p>
+          <div className="maintenance-notice">
+            <span>01</span>
+            <p>
+              Mientras dura esta mejora, los análisis no se muestran
+              públicamente.
+            </p>
+          </div>
+          <p className="maintenance-return">Volveremos pronto.</p>
+        </div>
+
+        <div className="maintenance-visual" aria-hidden="true">
+          <div className="maintenance-visual-header">
+            <span>ACTUALIZACIÓN</span>
+            <strong>EN PROGRESO</strong>
+          </div>
+          <div className="maintenance-radar">
+            <span className="maintenance-ring maintenance-ring-one" />
+            <span className="maintenance-ring maintenance-ring-two" />
+            <span className="maintenance-axis maintenance-axis-horizontal" />
+            <span className="maintenance-axis maintenance-axis-vertical" />
+            <span className="maintenance-sweep" />
+            <span className="maintenance-dot maintenance-dot-one" />
+            <span className="maintenance-dot maintenance-dot-two" />
+            <span className="maintenance-radar-mark">LR</span>
+          </div>
+          <div className="maintenance-progress">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+      </section>
+
+      <footer className="maintenance-footer">
+        <div>
+          <span className="brand-mark" aria-hidden="true">LR</span>
+          <strong>Ladrillo Radar</strong>
+        </div>
+        <p>
+          Una pausa temporal para mejorar la claridad, la trazabilidad y la
+          utilidad de la información.
+        </p>
+        <UberleapCredit />
+      </footer>
+    </main>
+  );
+}
+
+function RadarHome() {
   const [platform, setPlatform] = useState<"Todas" | Platform>("Todas");
   const [risk, setRisk] = useState<"Todos" | Risk>("Todos");
   const [sortMode, setSortMode] = useState<SortMode>("nearest");
@@ -350,4 +426,8 @@ export default function Home() {
       </footer>
     </main>
   );
+}
+
+export default function Home() {
+  return MAINTENANCE_MODE ? <MaintenancePage /> : <RadarHome />;
 }

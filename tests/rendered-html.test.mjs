@@ -26,55 +26,27 @@ function assertUberleapCredit(html) {
   assert.match(html, /href="https:\/\/uberleap\.com\/"[^>]*>Uberleap<\/a>/);
 }
 
-test("exports the complete static radar", async () => {
+test("exports the temporary maintenance homepage without analyses", async () => {
   const html = await readFile(new URL("index.html", root), "utf8");
 
   assert.match(html, /Ladrillo Radar/);
-  assert.match(html, /Actuales y próximos/);
-  assert.match(html, /Proyectos pasados/);
-  assert.match(
-    html,
-    /Se conservan durante (?:<!-- -->)?30(?:<!-- -->)? días desde su fecha y hora de apertura/,
-  );
-  assert.match(html, /Fecha · más cercanos/);
-  assert.match(html, /Residencial Mas Martí/);
-  assert.match(html, /Urban Suites Alicante/);
-  assert.match(html, /Toboso Madrid/);
-  assert.match(html, /Vivaldi II/);
-  assert.match(html, /Residencial Altay/);
-  assert.match(html, /Valencia I · Proyecto Mirador Sur/);
-  assert.match(html, /Madrid Atlas Nuevo Ahijones/);
-  assert.match(html, /Málaga Benahavís/);
-  assert.match(html, /Talvion Puerto de Sagunto/);
-  assert.match(html, /proyectos\/residencial-mas-marti\//);
-  assert.match(html, /proyectos\/vivaldi-ii\//);
-  assert.match(html, /proyectos\/residencial-altay\//);
-  assert.match(html, /proyectos\/valencia-mirador-sur\//);
-  assert.match(html, /proyectos\/madrid-atlas-nuevo-ahijones\//);
-  assert.match(html, /proyectos\/malaga-benahavis\//);
-  assert.match(html, /proyectos\/talvion-puerto-sagunto\//);
-  const projectCardLinks = [...html.matchAll(/<a class="project-card-link" href="proyectos\/([^\"]+)\/"/g)];
-  assert.equal(projectCardLinks.length, 9);
-  assert.doesNotMatch(html, /<a class="detail-link"/);
-  assert.match(html, /6,5, escala de 0 a 10/);
-  assert.match(html, /7,1, escala de 0 a 10/);
-  assert.match(html, /2,5, escala de 0 a 10/);
-  assert.match(html, /score-chip score-band-yellow" data-score-band="yellow" aria-label="6,5/);
-  assert.match(html, /score-chip score-band-orange" data-score-band="orange" aria-label="5,5/);
-  assert.match(html, /score-chip score-band-green-soft" data-score-band="green-soft" aria-label="7,1/);
-  assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="4,0/);
-  assert.match(html, /score-chip score-band-red" data-score-band="red" aria-label="3,9/);
-  assert.match(html, /score-chip score-band-orange" data-score-band="orange" aria-label="5,2/);
-  assert.doesNotMatch(html, /COMPARATIVA DIRECTA|href="\#comparativa"/);
-  assert.doesNotMatch(html, /\/10/);
-  assert.match(html, /logos\/urbanitae\.svg/);
-  assert.match(html, /logos\/wecity\.png/);
+  assert.match(html, /Estamos mejorando Ladrillo Radar/);
+  assert.match(html, /Mejora en curso/);
+  assert.match(html, /los análisis no se muestran/);
+  assert.match(html, /Volveremos pronto/);
+  assert.match(html, /Ladrillo Radar — Estamos mejorando/);
+  assert.doesNotMatch(html, /Actuales y próximos|Proyectos pasados|COMPARATIVA DIRECTA/);
+  assert.doesNotMatch(html, /class="project-card|href="proyectos\//);
+  for (const project of projects) {
+    assert.doesNotMatch(html, new RegExp(project.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
   assert.match(html, /\.\/assets\//);
   assert.doesNotMatch(html, /(?:href|src)=["']\/assets\//);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
   assert.match(html, /property="og:site_name" content="Ladrillo Radar"/);
   assert.match(html, /property="og:image" content="[^"]*\/og\.png\?v=2"/);
-  assert.doesNotMatch(html, /Seis proyectos de Civislend/);
+  assert.match(html, /property="og:title" content="Ladrillo Radar — Estamos mejorando"/);
+  assert.doesNotMatch(html, /Proyectos de Civislend|Fichas documentales de Civislend/);
   assertCloudflareAnalytics(html);
   assertUberleapCredit(html);
 
